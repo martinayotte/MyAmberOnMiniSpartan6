@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/martin/minispartan6/MyAmbder/system.ncd
+OUTFILE=/home/martin/minispartan6/MyAmbder/system.bit
+FAMILY=Spartan6
+PART=xc6slx9-3ftg256
+WORKINGDIR=/home/martin/minispartan6/MyAmbder
+LICENSE=WebPack
+USER_INFO=210742716_0_0_270

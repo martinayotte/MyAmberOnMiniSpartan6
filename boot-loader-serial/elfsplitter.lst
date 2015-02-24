@@ -1,0 +1,139 @@
+   1              		.arch armv2a
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.file	"elfsplitter.c"
+  13              		.text
+  14              		.align	2
+  15              		.global	elfsplitter
+  17              	elfsplitter:
+  18              		@ args = 0, pretend = 0, frame = 0
+  19              		@ frame_needed = 0, uses_anonymous_args = 0
+  20 0000 F8432DE9 		stmfd	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
+  21 0004 0040A0E1 		mov	r4, r0
+  22 0008 010080E2 		add	r0, r0, #1
+  23 000c 20119FE5 		ldr	r1, .L26
+  24 0010 0320A0E3 		mov	r2, #3
+  25 0014 FEFFFFEB 		bl	strncmp
+  26 0018 000050E3 		cmp	r0, #0
+  27 001c 14019F15 		ldrne	r0, .L26+4
+  28 0020 0500001A 		bne	.L22
+  29 0024 1230D4E5 		ldrb	r3, [r4, #18]	@ zero_extendqisi2
+  30 0028 1320D4E5 		ldrb	r2, [r4, #19]	@ zero_extendqisi2
+  31 002c 023483E1 		orr	r3, r3, r2, asl #8
+  32 0030 280053E3 		cmp	r3, #40
+  33 0034 0300000A 		beq	.L4
+  34 0038 FC009FE5 		ldr	r0, .L26+8
+  35              	.L22:
+  36 003c FEFFFFEB 		bl	printf
+  37 0040 0100A0E3 		mov	r0, #1
+  38 0044 F883BDE8 		ldmfd	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+  39              	.L4:
+  40 0048 3030D4E5 		ldrb	r3, [r4, #48]	@ zero_extendqisi2
+  41 004c 3160D4E5 		ldrb	r6, [r4, #49]	@ zero_extendqisi2
+  42 0050 066483E1 		orr	r6, r3, r6, asl #8
+  43 0054 0010A0E1 		mov	r1, r0
+  44              	.L5:
+  45 0058 060051E1 		cmp	r1, r6
+  46 005c 3300002A 		bcs	.L24
+  47 0060 2E30D4E5 		ldrb	r3, [r4, #46]	@ zero_extendqisi2
+  48 0064 2F20D4E5 		ldrb	r2, [r4, #47]	@ zero_extendqisi2
+  49 0068 023483E1 		orr	r3, r3, r2, asl #8
+  50 006c 202094E5 		ldr	r2, [r4, #32]
+  51 0070 912323E0 		mla	r3, r1, r3, r2
+  52 0074 033084E0 		add	r3, r4, r3
+  53 0078 042093E5 		ldr	r2, [r3, #4]
+  54 007c 010052E3 		cmp	r2, #1
+  55 0080 0300000A 		beq	.L6
+  56              	.L9:
+  57 0084 042093E5 		ldr	r2, [r3, #4]
+  58 0088 080052E3 		cmp	r2, #8
+  59 008c 2500001A 		bne	.L12
+  60 0090 150000EA 		b	.L25
+  61              	.L6:
+  62 0094 142093E5 		ldr	r2, [r3, #20]
+  63 0098 000052E3 		cmp	r2, #0
+  64 009c 0020A013 		movne	r2, #0
+  65 00a0 F7FFFF0A 		beq	.L9
+  66              	.L10:
+  67 00a4 14C093E5 		ldr	ip, [r3, #20]
+  68 00a8 0C0052E1 		cmp	r2, ip
+  69 00ac F4FFFF2A 		bcs	.L9
+  70 00b0 105093E5 		ldr	r5, [r3, #16]
+  71 00b4 055082E0 		add	r5, r2, r5
+  72 00b8 0C7093E5 		ldr	r7, [r3, #12]
+  73 00bc 05C084E0 		add	ip, r4, r5
+  74 00c0 0380DCE5 		ldrb	r8, [ip, #3]	@ zero_extendqisi2
+  75 00c4 0290DCE5 		ldrb	r9, [ip, #2]	@ zero_extendqisi2
+  76 00c8 0998A0E1 		mov	r9, r9, asl #16
+  77 00cc 089C89E1 		orr	r9, r9, r8, asl #24
+  78 00d0 0580D4E7 		ldrb	r8, [r4, r5]	@ zero_extendqisi2
+  79 00d4 085089E1 		orr	r5, r9, r8
+  80 00d8 01C0DCE5 		ldrb	ip, [ip, #1]	@ zero_extendqisi2
+  81 00dc 0CC485E1 		orr	ip, r5, ip, asl #8
+  82 00e0 07C082E7 		str	ip, [r2, r7]
+  83 00e4 042082E2 		add	r2, r2, #4
+  84 00e8 EDFFFFEA 		b	.L10
+  85              	.L25:
+  86 00ec 142093E5 		ldr	r2, [r3, #20]
+  87 00f0 000052E3 		cmp	r2, #0
+  88 00f4 10209315 		ldrne	r2, [r3, #16]
+  89 00f8 0A00000A 		beq	.L12
+  90              	.L13:
+  91 00fc 10C093E5 		ldr	ip, [r3, #16]
+  92 0100 145093E5 		ldr	r5, [r3, #20]
+  93 0104 05508CE0 		add	r5, ip, r5
+  94 0108 050052E1 		cmp	r2, r5
+  95 010c 0500002A 		bcs	.L12
+  96 0110 0C5093E5 		ldr	r5, [r3, #12]
+  97 0114 05C06CE0 		rsb	ip, ip, r5
+  98 0118 0050A0E3 		mov	r5, #0
+  99 011c 02508CE7 		str	r5, [ip, r2]
+ 100 0120 042082E2 		add	r2, r2, #4
+ 101 0124 F4FFFFEA 		b	.L13
+ 102              	.L12:
+ 103 0128 011081E2 		add	r1, r1, #1
+ 104 012c C9FFFFEA 		b	.L5
+ 105              	.L24:
+ 106 0130 F883BDE8 		ldmfd	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
+ 107              	.L27:
+ 108              		.align	2
+ 109              	.L26:
+ 110 0134 00000000 		.word	.LC0
+ 111 0138 04000000 		.word	.LC1
+ 112 013c 1D000000 		.word	.LC2
+ 114              		.comm	SHT_NAME,80,1
+ 115              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 116              	.LC0:
+ 117 0000 454C4600 		.ascii	"ELF\000"
+ 118              	.LC1:
+ 119 0004 4552524F 		.ascii	"ERROR: Not an ELF file.\012\000"
+ 119      523A204E 
+ 119      6F742061 
+ 119      6E20454C 
+ 119      46206669 
+ 120              	.LC2:
+ 121 001d 4552524F 		.ascii	"ERROR: ELF file not targetting correct processor ty"
+ 121      523A2045 
+ 121      4C462066 
+ 121      696C6520 
+ 121      6E6F7420 
+ 122 0050 70650A00 		.ascii	"pe\012\000"
+ 123              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140725 (release) [ARM/embedded-4_8-br
+DEFINED SYMBOLS
+                            *ABS*:00000000 elfsplitter.c
+     /tmp/ccAs1ETu.s:14     .text:00000000 $a
+     /tmp/ccAs1ETu.s:17     .text:00000000 elfsplitter
+     /tmp/ccAs1ETu.s:110    .text:00000134 $d
+                            *COM*:00000050 SHT_NAME
+
+UNDEFINED SYMBOLS
+strncmp
+printf

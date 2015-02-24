@@ -1,0 +1,818 @@
+   1              		.arch armv2a
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.file	"boot-loader-serial.c"
+  13              		.text
+  14              		.align	2
+  15              		.global	dump_mem
+  17              	dump_mem:
+  18              		@ args = 0, pretend = 0, frame = 0
+  19              		@ frame_needed = 0, uses_anonymous_args = 0
+  20 0000 F8402DE9 		stmfd	sp!, {r3, r4, r5, r6, r7, lr}
+  21 0004 0060A0E1 		mov	r6, r0
+  22 0008 4171A0E1 		mov	r7, r1, asr #2
+  23 000c 60009FE5 		ldr	r0, .L7
+  24 0010 0610A0E1 		mov	r1, r6
+  25 0014 FEFFFFEB 		bl	printf
+  26 0018 0050A0E3 		mov	r5, #0
+  27 001c 0540A0E1 		mov	r4, r5
+  28              	.L2:
+  29 0020 070054E1 		cmp	r4, r7
+  30 0024 0F0000AA 		bge	.L6
+  31 0028 48009FE5 		ldr	r0, .L7+4
+  32 002c 041096E4 		ldr	r1, [r6], #4
+  33 0030 FEFFFFEB 		bl	printf
+  34 0034 013085E2 		add	r3, r5, #1
+  35 0038 060055E3 		cmp	r5, #6
+  36 003c 060000DA 		ble	.L3
+  37 0040 012047E2 		sub	r2, r7, #1
+  38 0044 020054E1 		cmp	r4, r2
+  39 0048 030000AA 		bge	.L3
+  40 004c 28009FE5 		ldr	r0, .L7+8
+  41 0050 0610A0E1 		mov	r1, r6
+  42 0054 FEFFFFEB 		bl	printf
+  43 0058 0030A0E3 		mov	r3, #0
+  44              	.L3:
+  45 005c 014084E2 		add	r4, r4, #1
+  46 0060 0350A0E1 		mov	r5, r3
+  47 0064 EDFFFFEA 		b	.L2
+  48              	.L6:
+  49 0068 10009FE5 		ldr	r0, .L7+12
+  50 006c F840BDE8 		ldmfd	sp!, {r3, r4, r5, r6, r7, lr}
+  51 0070 FEFFFFEA 		b	printf
+  52              	.L8:
+  53              		.align	2
+  54              	.L7:
+  55 0074 00000000 		.word	.LC0
+  56 0078 06000000 		.word	.LC1
+  57 007c 0C000000 		.word	.LC2
+  58 0080 13000000 		.word	.LC3
+  60              		.align	2
+  61              		.global	printm
+  63              	printm:
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66              		@ link register save eliminated.
+  67 0084 0010A0E1 		mov	r1, r0
+  68 0088 04009FE5 		ldr	r0, .L10
+  69 008c 002091E5 		ldr	r2, [r1]
+  70 0090 FEFFFFEA 		b	printf
+  71              	.L11:
+  72              		.align	2
+  73              	.L10:
+  74 0094 16000000 		.word	.LC4
+  76              		.align	2
+  77              		.global	print_spaces
+  79              	print_spaces:
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82 0098 10402DE9 		stmfd	sp!, {r4, lr}
+  83 009c 0040A0E1 		mov	r4, r0
+  84              	.L13:
+  85 00a0 000054E3 		cmp	r4, #0
+  86 00a4 0300000A 		beq	.L15
+  87 00a8 0C009FE5 		ldr	r0, .L16
+  88 00ac FEFFFFEB 		bl	printf
+  89 00b0 014044E2 		sub	r4, r4, #1
+  90 00b4 F9FFFFEA 		b	.L13
+  91              	.L15:
+  92 00b8 1080BDE8 		ldmfd	sp!, {r4, pc}
+  93              	.L17:
+  94              		.align	2
+  95              	.L16:
+  96 00bc 2B000000 		.word	.LC5
+  98              		.align	2
+  99              		.global	print_help
+ 101              	print_help:
+ 102              		@ args = 0, pretend = 0, frame = 0
+ 103              		@ frame_needed = 0, uses_anonymous_args = 0
+ 104 00c0 08402DE9 		stmfd	sp!, {r3, lr}
+ 105 00c4 CC009FE5 		ldr	r0, .L19
+ 106 00c8 FEFFFFEB 		bl	printf
+ 107 00cc C8009FE5 		ldr	r0, .L19+4
+ 108 00d0 FEFFFFEB 		bl	printf
+ 109 00d4 1D00A0E3 		mov	r0, #29
+ 110 00d8 FEFFFFEB 		bl	print_spaces
+ 111 00dc BC009FE5 		ldr	r0, .L19+8
+ 112 00e0 FEFFFFEB 		bl	printf
+ 113 00e4 B8009FE5 		ldr	r0, .L19+12
+ 114 00e8 FEFFFFEB 		bl	printf
+ 115 00ec 1300A0E3 		mov	r0, #19
+ 116 00f0 FEFFFFEB 		bl	print_spaces
+ 117 00f4 AC009FE5 		ldr	r0, .L19+16
+ 118 00f8 FEFFFFEB 		bl	printf
+ 119 00fc A8009FE5 		ldr	r0, .L19+20
+ 120 0100 FEFFFFEB 		bl	printf
+ 121 0104 A4009FE5 		ldr	r0, .L19+24
+ 122 0108 FEFFFFEB 		bl	printf
+ 123 010c 1D00A0E3 		mov	r0, #29
+ 124 0110 FEFFFFEB 		bl	print_spaces
+ 125 0114 98009FE5 		ldr	r0, .L19+28
+ 126 0118 FEFFFFEB 		bl	printf
+ 127 011c 94009FE5 		ldr	r0, .L19+32
+ 128 0120 FEFFFFEB 		bl	printf
+ 129 0124 1300A0E3 		mov	r0, #19
+ 130 0128 FEFFFFEB 		bl	print_spaces
+ 131 012c 88009FE5 		ldr	r0, .L19+36
+ 132 0130 FEFFFFEB 		bl	printf
+ 133 0134 84009FE5 		ldr	r0, .L19+40
+ 134 0138 FEFFFFEB 		bl	printf
+ 135 013c 1300A0E3 		mov	r0, #19
+ 136 0140 FEFFFFEB 		bl	print_spaces
+ 137 0144 78009FE5 		ldr	r0, .L19+44
+ 138 0148 FEFFFFEB 		bl	printf
+ 139 014c 74009FE5 		ldr	r0, .L19+48
+ 140 0150 FEFFFFEB 		bl	printf
+ 141 0154 1300A0E3 		mov	r0, #19
+ 142 0158 FEFFFFEB 		bl	print_spaces
+ 143 015c 68009FE5 		ldr	r0, .L19+52
+ 144 0160 FEFFFFEB 		bl	printf
+ 145 0164 64009FE5 		ldr	r0, .L19+56
+ 146 0168 FEFFFFEB 		bl	printf
+ 147 016c 1D00A0E3 		mov	r0, #29
+ 148 0170 FEFFFFEB 		bl	print_spaces
+ 149 0174 58009FE5 		ldr	r0, .L19+60
+ 150 0178 FEFFFFEB 		bl	printf
+ 151 017c 54009FE5 		ldr	r0, .L19+64
+ 152 0180 FEFFFFEB 		bl	printf
+ 153 0184 0B00A0E3 		mov	r0, #11
+ 154 0188 FEFFFFEB 		bl	print_spaces
+ 155 018c 48009FE5 		ldr	r0, .L19+68
+ 156 0190 0840BDE8 		ldmfd	sp!, {r3, lr}
+ 157 0194 FEFFFFEA 		b	printf
+ 158              	.L20:
+ 159              		.align	2
+ 160              	.L19:
+ 161 0198 2D000000 		.word	.LC6
+ 162 019c 37000000 		.word	.LC7
+ 163 01a0 39000000 		.word	.LC8
+ 164 01a4 4A000000 		.word	.LC9
+ 165 01a8 56000000 		.word	.LC10
+ 166 01ac 77000000 		.word	.LC11
+ 167 01b0 A1000000 		.word	.LC12
+ 168 01b4 A3000000 		.word	.LC13
+ 169 01b8 B9000000 		.word	.LC14
+ 170 01bc C5000000 		.word	.LC15
+ 171 01c0 F1000000 		.word	.LC16
+ 172 01c4 FD000000 		.word	.LC17
+ 173 01c8 1E010000 		.word	.LC18
+ 174 01cc 2A010000 		.word	.LC19
+ 175 01d0 36010000 		.word	.LC20
+ 176 01d4 38010000 		.word	.LC21
+ 177 01d8 47010000 		.word	.LC22
+ 178 01dc 5B010000 		.word	.LC23
+ 180              		.align	2
+ 181              		.global	load_run
+ 183              	load_run:
+ 184              		@ args = 0, pretend = 0, frame = 0
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186 01e0 10402DE9 		stmfd	sp!, {r4, lr}
+ 187 01e4 0140A0E1 		mov	r4, r1
+ 188 01e8 010040E2 		sub	r0, r0, #1
+ 189 01ec 040050E3 		cmp	r0, #4
+ 190 01f0 00F19F97 		ldrls	pc, [pc, r0, asl #2]
+ 191 01f4 380000EA 		b	.L22
+ 192              	.L24:
+ 193 01f8 0C020000 		.word	.L23
+ 194 01fc 50020000 		.word	.L25
+ 195 0200 64020000 		.word	.L26
+ 196 0204 88020000 		.word	.L27
+ 197 0208 AC020000 		.word	.L28
+ 198              	.L23:
+ 199 020c F0009FE5 		ldr	r0, .L34
+ 200 0210 F0109FE5 		ldr	r1, .L34+4
+ 201 0214 FEFFFFEB 		bl	printf
+ 202 0218 0104A0E3 		mov	r0, #16777216
+ 203 021c 0215A0E3 		mov	r1, #8388608
+ 204 0220 FEFFFFEB 		bl	xmodemReceive
+ 205 0224 0040A0E1 		mov	r4, r0
+ 206 0228 020550E3 		cmp	r0, #8388608
+ 207 022c D8009F85 		ldrhi	r0, .L34+8
+ 208 0230 0410A081 		movhi	r1, r4
+ 209 0234 2600008A 		bhi	.L31
+ 210              	.L29:
+ 211 0238 D0009FE5 		ldr	r0, .L34+12
+ 212 023c FEFFFFEB 		bl	printf
+ 213 0240 0104A0E3 		mov	r0, #16777216
+ 214 0244 0410A0E1 		mov	r1, r4
+ 215 0248 1040BDE8 		ldmfd	sp!, {r4, lr}
+ 216 024c FEFFFFEA 		b	elfsplitter
+ 217              	.L25:
+ 218 0250 FEFFFFEB 		bl	print_help
+ 219 0254 FEFFFFEB 		bl	_core_status
+ 220 0258 1000A0E3 		mov	r0, #16
+ 221 025c FEFFFFEB 		bl	print_spaces
+ 222 0260 250000EA 		b	.L32
+ 223              	.L26:
+ 224 0264 A8009FE5 		ldr	r0, .L34+16
+ 225 0268 0217A0E3 		mov	r1, #524288
+ 226 026c FEFFFFEB 		bl	printf
+ 227 0270 1000A0E3 		mov	r0, #16
+ 228 0274 FEFFFFEB 		bl	print_spaces
+ 229 0278 98009FE5 		ldr	r0, .L34+20
+ 230 027c FEFFFFEB 		bl	printf
+ 231 0280 0207A0E3 		mov	r0, #524288
+ 232 0284 1B0000EA 		b	.L33
+ 233              	.L27:
+ 234 0288 84009FE5 		ldr	r0, .L34+16
+ 235 028c 0219A0E3 		mov	r1, #32768
+ 236 0290 FEFFFFEB 		bl	printf
+ 237 0294 1000A0E3 		mov	r0, #16
+ 238 0298 FEFFFFEB 		bl	print_spaces
+ 239 029c 74009FE5 		ldr	r0, .L34+20
+ 240 02a0 FEFFFFEB 		bl	printf
+ 241 02a4 0209A0E3 		mov	r0, #32768
+ 242 02a8 120000EA 		b	.L33
+ 243              	.L28:
+ 244 02ac 50009FE5 		ldr	r0, .L34
+ 245 02b0 50109FE5 		ldr	r1, .L34+4
+ 246 02b4 FEFFFFEB 		bl	printf
+ 247 02b8 0400A0E1 		mov	r0, r4
+ 248 02bc 0215A0E3 		mov	r1, #8388608
+ 249 02c0 FEFFFFEB 		bl	xmodemReceive
+ 250 02c4 0010A0E1 		mov	r1, r0
+ 251 02c8 020550E3 		cmp	r0, #8388608
+ 252 02cc 1080BD98 		ldmlsfd	sp!, {r4, pc}
+ 253 02d0 34009FE5 		ldr	r0, .L34+8
+ 254              	.L31:
+ 255 02d4 1040BDE8 		ldmfd	sp!, {r4, lr}
+ 256 02d8 FEFFFFEA 		b	printf
+ 257              	.L22:
+ 258 02dc 30009FE5 		ldr	r0, .L34+16
+ 259 02e0 FEFFFFEB 		bl	printf
+ 260 02e4 1000A0E3 		mov	r0, #16
+ 261 02e8 FEFFFFEB 		bl	print_spaces
+ 262 02ec 24009FE5 		ldr	r0, .L34+20
+ 263 02f0 FEFFFFEB 		bl	printf
+ 264 02f4 0400A0E1 		mov	r0, r4
+ 265              	.L33:
+ 266 02f8 FEFFFFEB 		bl	_jump_to_program
+ 267              	.L32:
+ 268 02fc 1040BDE8 		ldmfd	sp!, {r4, lr}
+ 269 0300 FEFFFFEA 		b	_testpass
+ 270              	.L35:
+ 271              		.align	2
+ 272              	.L34:
+ 273 0304 68010000 		.word	.LC24
+ 274 0308 6C010000 		.word	.LC25
+ 275 030c 93010000 		.word	.LC26
+ 276 0310 B1010000 		.word	.LC27
+ 277 0314 BD010000 		.word	.LC28
+ 278 0318 C7010000 		.word	.LC29
+ 280              		.align	2
+ 281              		.global	get_hex
+ 283              	get_hex:
+ 284              		@ args = 0, pretend = 0, frame = 0
+ 285              		@ frame_needed = 0, uses_anonymous_args = 0
+ 286 031c 30402DE9 		stmfd	sp!, {r4, r5, lr}
+ 287 0320 00C0A0E3 		mov	ip, #0
+ 288 0324 00C082E5 		str	ip, [r2]
+ 289 0328 01C0A0E1 		mov	ip, r1
+ 290              	.L43:
+ 291 032c 0C40D0E7 		ldrb	r4, [r0, ip]	@ zero_extendqisi2
+ 292 0330 305044E2 		sub	r5, r4, #48
+ 293 0334 090055E3 		cmp	r5, #9
+ 294 0338 00409295 		ldrls	r4, [r2]
+ 295 033c 0442A091 		movls	r4, r4, asl #4
+ 296 0340 00408295 		strls	r4, [r2]
+ 297 0344 30404492 		subls	r4, r4, #48
+ 298 0348 0600009A 		bls	.L44
+ 299              	.L37:
+ 300 034c 415044E2 		sub	r5, r4, #65
+ 301 0350 050055E3 		cmp	r5, #5
+ 302 0354 0800008A 		bhi	.L39
+ 303 0358 004092E5 		ldr	r4, [r2]
+ 304 035c 0442A0E1 		mov	r4, r4, asl #4
+ 305 0360 004082E5 		str	r4, [r2]
+ 306 0364 374044E2 		sub	r4, r4, #55
+ 307              	.L44:
+ 308 0368 0C50D0E7 		ldrb	r5, [r0, ip]	@ zero_extendqisi2
+ 309 036c 054084E0 		add	r4, r4, r5
+ 310 0370 004082E5 		str	r4, [r2]
+ 311 0374 0040A0E3 		mov	r4, #0
+ 312 0378 090000EA 		b	.L38
+ 313              	.L39:
+ 314 037c 614044E2 		sub	r4, r4, #97
+ 315 0380 050054E3 		cmp	r4, #5
+ 316 0384 00409295 		ldrls	r4, [r2]
+ 317 0388 0442A091 		movls	r4, r4, asl #4
+ 318 038c 00408295 		strls	r4, [r2]
+ 319 0390 57404492 		subls	r4, r4, #87
+ 320 0394 F3FFFF9A 		bls	.L44
+ 321              	.L40:
+ 322 0398 0C4061E0 		rsb	r4, r1, ip
+ 323 039c 004083E5 		str	r4, [r3]
+ 324 03a0 0140A0E3 		mov	r4, #1
+ 325              	.L38:
+ 326 03a4 075081E2 		add	r5, r1, #7
+ 327 03a8 0C0055E1 		cmp	r5, ip
+ 328 03ac 0840A0B3 		movlt	r4, #8
+ 329 03b0 004083B5 		strlt	r4, [r3]
+ 330 03b4 0140A0B3 		movlt	r4, #1
+ 331 03b8 01C08CE2 		add	ip, ip, #1
+ 332 03bc 000054E3 		cmp	r4, #0
+ 333 03c0 D9FFFF0A 		beq	.L43
+ 334 03c4 010081E2 		add	r0, r1, #1
+ 335 03c8 00005CE1 		cmp	ip, r0
+ 336 03cc 0000A0D3 		movle	r0, #0
+ 337 03d0 0100A0C3 		movgt	r0, #1
+ 338 03d4 3080BDE8 		ldmfd	sp!, {r4, r5, pc}
+ 340              		.align	2
+ 341              		.global	get_address_data
+ 343              	get_address_data:
+ 344              		@ args = 0, pretend = 0, frame = 8
+ 345              		@ frame_needed = 0, uses_anonymous_args = 0
+ 346 03d8 37402DE9 		stmfd	sp!, {r0, r1, r2, r4, r5, lr}
+ 347 03dc 0050A0E1 		mov	r5, r0
+ 348 03e0 0130A0E1 		mov	r3, r1
+ 349 03e4 0240A0E1 		mov	r4, r2
+ 350 03e8 0210A0E3 		mov	r1, #2
+ 351 03ec 0320A0E1 		mov	r2, r3
+ 352 03f0 04308DE2 		add	r3, sp, #4
+ 353 03f4 FEFFFFEB 		bl	get_hex
+ 354 03f8 000050E3 		cmp	r0, #0
+ 355 03fc 0500000A 		beq	.L46
+ 356 0400 0500A0E1 		mov	r0, r5
+ 357 0404 04109DE5 		ldr	r1, [sp, #4]
+ 358 0408 031081E2 		add	r1, r1, #3
+ 359 040c 0420A0E1 		mov	r2, r4
+ 360 0410 04308DE2 		add	r3, sp, #4
+ 361 0414 FEFFFFEB 		bl	get_hex
+ 362              	.L46:
+ 363 0418 0CD08DE2 		add	sp, sp, #12
+ 364              		@ sp needed
+ 365 041c 3080BDE8 		ldmfd	sp!, {r4, r5, pc}
+ 367              		.align	2
+ 368              		.global	parse
+ 370              	parse:
+ 371              		@ args = 0, pretend = 0, frame = 24
+ 372              		@ frame_needed = 0, uses_anonymous_args = 0
+ 373 0420 10402DE9 		stmfd	sp!, {r4, lr}
+ 374 0424 18D04DE2 		sub	sp, sp, #24
+ 375 0428 0040A0E1 		mov	r4, r0
+ 376 042c 08008DE2 		add	r0, sp, #8
+ 377 0430 04129FE5 		ldr	r1, .L98
+ 378 0434 1020A0E3 		mov	r2, #16
+ 379 0438 FEFFFFEB 		bl	memcpy
+ 380 043c 0130D4E5 		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+ 381 0440 000053E3 		cmp	r3, #0
+ 382 0444 7A00000A 		beq	.L50
+ 383 0448 0D0053E3 		cmp	r3, #13
+ 384 044c 1100001A 		bne	.L52
+ 385 0450 0030D4E5 		ldrb	r3, [r4]	@ zero_extendqisi2
+ 386 0454 6C0053E3 		cmp	r3, #108
+ 387 0458 0500000A 		beq	.L54
+ 388 045c 730053E3 		cmp	r3, #115
+ 389 0460 0600000A 		beq	.L55
+ 390 0464 680053E3 		cmp	r3, #104
+ 391 0468 6E00001A 		bne	.L58
+ 392 046c FEFFFFEB 		bl	print_help
+ 393 0470 6F0000EA 		b	.L50
+ 394              	.L54:
+ 395 0474 0100A0E3 		mov	r0, #1
+ 396 0478 0010A0E3 		mov	r1, #0
+ 397 047c 5B0000EA 		b	.L94
+ 398              	.L55:
+ 399 0480 FEFFFFEB 		bl	_core_status
+ 400 0484 1000A0E3 		mov	r0, #16
+ 401 0488 FEFFFFEB 		bl	print_spaces
+ 402 048c AC019FE5 		ldr	r0, .L98+4
+ 403 0490 FEFFFFEB 		bl	printf
+ 404 0494 660000EA 		b	.L50
+ 405              	.L52:
+ 406 0498 200053E3 		cmp	r3, #32
+ 407 049c 6100001A 		bne	.L58
+ 408 04a0 0030D4E5 		ldrb	r3, [r4]	@ zero_extendqisi2
+ 409 04a4 6A0053E3 		cmp	r3, #106
+ 410 04a8 1500000A 		beq	.L59
+ 411 04ac 0400008A 		bhi	.L60
+ 412 04b0 620053E3 		cmp	r3, #98
+ 413 04b4 4400000A 		beq	.L61
+ 414 04b8 640053E3 		cmp	r3, #100
+ 415 04bc 0700000A 		beq	.L62
+ 416 04c0 580000EA 		b	.L58
+ 417              	.L60:
+ 418 04c4 720053E3 		cmp	r3, #114
+ 419 04c8 3700000A 		beq	.L63
+ 420 04cc 770053E3 		cmp	r3, #119
+ 421 04d0 4800000A 		beq	.L64
+ 422 04d4 700053E3 		cmp	r3, #112
+ 423 04d8 5200001A 		bne	.L58
+ 424 04dc 110000EA 		b	.L97
+ 425              	.L62:
+ 426 04e0 0400A0E1 		mov	r0, r4
+ 427 04e4 0D10A0E1 		mov	r1, sp
+ 428 04e8 04208DE2 		add	r2, sp, #4
+ 429 04ec FEFFFFEB 		bl	get_address_data
+ 430 04f0 000050E3 		cmp	r0, #0
+ 431 04f4 4E00000A 		beq	.L50
+ 432 04f8 03009DE8 		ldmia	sp, {r0, r1}
+ 433 04fc FEFFFFEB 		bl	dump_mem
+ 434 0500 4B0000EA 		b	.L50
+ 435              	.L59:
+ 436 0504 0400A0E1 		mov	r0, r4
+ 437 0508 0210A0E3 		mov	r1, #2
+ 438 050c 0D20A0E1 		mov	r2, sp
+ 439 0510 04308DE2 		add	r3, sp, #4
+ 440 0514 FEFFFFEB 		bl	get_hex
+ 441 0518 000050E3 		cmp	r0, #0
+ 442 051c 0000A013 		movne	r0, #0
+ 443 0520 4300000A 		beq	.L50
+ 444 0524 300000EA 		b	.L96
+ 445              	.L97:
+ 446 0528 0400A0E1 		mov	r0, r4
+ 447 052c 0210A0E3 		mov	r1, #2
+ 448 0530 0D20A0E1 		mov	r2, sp
+ 449 0534 04308DE2 		add	r3, sp, #4
+ 450 0538 FEFFFFEB 		bl	get_hex
+ 451 053c 000050E3 		cmp	r0, #0
+ 452 0540 3B00000A 		beq	.L50
+ 453 0544 0030A0E3 		mov	r3, #0
+ 454 0548 04308DE5 		str	r3, [sp, #4]
+ 455 054c 00309DE5 		ldr	r3, [sp]
+ 456 0550 012083E2 		add	r2, r3, #1
+ 457 0554 00208DE5 		str	r2, [sp]
+ 458 0558 0040D3E5 		ldrb	r4, [r3]	@ zero_extendqisi2
+ 459              	.L69:
+ 460 055c 800014E3 		tst	r4, #128
+ 461 0560 3300001A 		bne	.L50
+ 462 0564 04309DE5 		ldr	r3, [sp, #4]
+ 463 0568 010A53E3 		cmp	r3, #4096
+ 464 056c 3000002A 		bcs	.L50
+ 465 0570 000054E3 		cmp	r4, #0
+ 466 0574 0400000A 		beq	.L71
+ 467 0578 0400A0E1 		mov	r0, r4
+ 468 057c FEFFFFEB 		bl	_outbyte
+ 469 0580 0D0054E3 		cmp	r4, #13
+ 470 0584 B4009F05 		ldreq	r0, .L98+4
+ 471 0588 FEFFFF0B 		bleq	printf
+ 472              	.L71:
+ 473 058c 00309DE5 		ldr	r3, [sp]
+ 474 0590 012083E2 		add	r2, r3, #1
+ 475 0594 00208DE5 		str	r2, [sp]
+ 476 0598 0040D3E5 		ldrb	r4, [r3]	@ zero_extendqisi2
+ 477 059c 04309DE5 		ldr	r3, [sp, #4]
+ 478 05a0 013083E2 		add	r3, r3, #1
+ 479 05a4 04308DE5 		str	r3, [sp, #4]
+ 480 05a8 EBFFFFEA 		b	.L69
+ 481              	.L63:
+ 482 05ac 0400A0E1 		mov	r0, r4
+ 483 05b0 0210A0E3 		mov	r1, #2
+ 484 05b4 0D20A0E1 		mov	r2, sp
+ 485 05b8 04308DE2 		add	r3, sp, #4
+ 486 05bc FEFFFFEB 		bl	get_hex
+ 487 05c0 000050E3 		cmp	r0, #0
+ 488 05c4 1A00000A 		beq	.L50
+ 489 05c8 130000EA 		b	.L95
+ 490              	.L61:
+ 491 05cc 0400A0E1 		mov	r0, r4
+ 492 05d0 0210A0E3 		mov	r1, #2
+ 493 05d4 0D20A0E1 		mov	r2, sp
+ 494 05d8 04308DE2 		add	r3, sp, #4
+ 495 05dc FEFFFFEB 		bl	get_hex
+ 496 05e0 000050E3 		cmp	r0, #0
+ 497 05e4 1200000A 		beq	.L50
+ 498 05e8 0500A0E3 		mov	r0, #5
+ 499              	.L96:
+ 500 05ec 00109DE5 		ldr	r1, [sp]
+ 501              	.L94:
+ 502 05f0 FEFFFFEB 		bl	load_run
+ 503 05f4 0E0000EA 		b	.L50
+ 504              	.L64:
+ 505 05f8 0400A0E1 		mov	r0, r4
+ 506 05fc 0D10A0E1 		mov	r1, sp
+ 507 0600 04208DE2 		add	r2, sp, #4
+ 508 0604 FEFFFFEB 		bl	get_address_data
+ 509 0608 000050E3 		cmp	r0, #0
+ 510 060c 0800000A 		beq	.L50
+ 511 0610 00309DE5 		ldr	r3, [sp]
+ 512 0614 04209DE5 		ldr	r2, [sp, #4]
+ 513 0618 002083E5 		str	r2, [r3]
+ 514              	.L95:
+ 515 061c 00009DE5 		ldr	r0, [sp]
+ 516 0620 FEFFFFEB 		bl	printm
+ 517 0624 020000EA 		b	.L50
+ 518              	.L58:
+ 519 0628 14009FE5 		ldr	r0, .L98+8
+ 520 062c 08108DE2 		add	r1, sp, #8
+ 521 0630 FEFFFFEB 		bl	printf
+ 522              	.L50:
+ 523 0634 18D08DE2 		add	sp, sp, #24
+ 524              		@ sp needed
+ 525 0638 1080BDE8 		ldmfd	sp!, {r4, pc}
+ 526              	.L99:
+ 527              		.align	2
+ 528              	.L98:
+ 529 063c C9010000 		.word	.LC30
+ 530 0640 C7010000 		.word	.LC29
+ 531 0644 68010000 		.word	.LC24
+ 533              		.section	.text.startup,"ax",%progbits
+ 534              		.align	2
+ 535              		.global	main
+ 537              	main:
+ 538              		@ args = 0, pretend = 0, frame = 40
+ 539              		@ frame_needed = 0, uses_anonymous_args = 0
+ 540 0000 F0412DE9 		stmfd	sp!, {r4, r5, r6, r7, r8, lr}
+ 541 0004 28D04DE2 		sub	sp, sp, #40
+ 542 0008 1020A0E3 		mov	r2, #16
+ 543 000c 1634A0E3 		mov	r3, #369098752
+ 544 0010 082083E5 		str	r2, [r3, #8]
+ 545 0014 50019FE5 		ldr	r0, .L128
+ 546 0018 0C10A0E3 		mov	r1, #12
+ 547 001c 4C219FE5 		ldr	r2, .L128+4
+ 548 0020 FEFFFFEB 		bl	printf
+ 549 0024 FEFFFFEB 		bl	print_help
+ 550 0028 44019FE5 		ldr	r0, .L128+8
+ 551 002c FEFFFFEB 		bl	printf
+ 552 0030 0070A0E3 		mov	r7, #0
+ 553              	.L125:
+ 554 0034 0740A0E1 		mov	r4, r7
+ 555 0038 0050A0E3 		mov	r5, #0
+ 556              	.L103:
+ 557 003c FA0FA0E3 		mov	r0, #1000
+ 558 0040 FEFFFFEB 		bl	_inbyte
+ 559 0044 006050E2 		subs	r6, r0, #0
+ 560 0048 FBFFFFBA 		blt	.L103
+ 561 004c 1B0056E3 		cmp	r6, #27
+ 562 0050 0150A003 		moveq	r5, #1
+ 563 0054 2300000A 		beq	.L111
+ 564 0058 5B0056E3 		cmp	r6, #91
+ 565 005c 01005503 		cmpeq	r5, #1
+ 566 0060 0080A013 		movne	r8, #0
+ 567 0064 0180A003 		moveq	r8, #1
+ 568 0068 0250A003 		moveq	r5, #2
+ 569 006c 1D00000A 		beq	.L111
+ 570 0070 020055E3 		cmp	r5, #2
+ 571 0074 1100001A 		bne	.L105
+ 572 0078 410056E3 		cmp	r6, #65
+ 573 007c 0850A011 		movne	r5, r8
+ 574 0080 EDFFFF1A 		bne	.L103
+ 575              	.L107:
+ 576 0084 040058E1 		cmp	r8, r4
+ 577 0088 030000AA 		bge	.L126
+ 578 008c 0800A0E3 		mov	r0, #8
+ 579 0090 FEFFFFEB 		bl	_outbyte
+ 580 0094 018088E2 		add	r8, r8, #1
+ 581 0098 F9FFFFEA 		b	.L107
+ 582              	.L126:
+ 583 009c 0040A0E3 		mov	r4, #0
+ 584              	.L109:
+ 585 00a0 070054E1 		cmp	r4, r7
+ 586 00a4 E2FFFFAA 		bge	.L125
+ 587 00a8 14308DE2 		add	r3, sp, #20
+ 588 00ac 0300D4E7 		ldrb	r0, [r4, r3]	@ zero_extendqisi2
+ 589 00b0 0400CDE7 		strb	r0, [sp, r4]
+ 590 00b4 FEFFFFEB 		bl	_outbyte
+ 591 00b8 014084E2 		add	r4, r4, #1
+ 592 00bc F7FFFFEA 		b	.L109
+ 593              	.L105:
+ 594 00c0 FEFFFFEB 		bl	_outbyte
+ 595 00c4 083056E2 		subs	r3, r6, #8
+ 596 00c8 005073E2 		rsbs	r5, r3, #0
+ 597 00cc 0350B5E0 		adcs	r5, r5, r3
+ 598 00d0 000054E3 		cmp	r4, #0
+ 599 00d4 0050A0D3 		movle	r5, #0
+ 600 00d8 000055E3 		cmp	r5, #0
+ 601 00dc 1D00000A 		beq	.L127
+ 602 00e0 014044E2 		sub	r4, r4, #1
+ 603 00e4 0850A0E1 		mov	r5, r8
+ 604              	.L111:
+ 605 00e8 0D2056E2 		subs	r2, r6, #13
+ 606 00ec 006072E2 		rsbs	r6, r2, #0
+ 607 00f0 0260B6E0 		adcs	r6, r6, r2
+ 608 00f4 120054E3 		cmp	r4, #18
+ 609 00f8 016086C3 		orrgt	r6, r6, #1
+ 610 00fc 000056E3 		cmp	r6, #0
+ 611 0100 CDFFFF0A 		beq	.L103
+ 612 0104 010054E3 		cmp	r4, #1
+ 613 0108 070000DA 		ble	.L112
+ 614 010c 0030A0E3 		mov	r3, #0
+ 615              	.L114:
+ 616 0110 0310DDE7 		ldrb	r1, [sp, r3]	@ zero_extendqisi2
+ 617 0114 14208DE2 		add	r2, sp, #20
+ 618 0118 0210C3E7 		strb	r1, [r3, r2]
+ 619 011c 013083E2 		add	r3, r3, #1
+ 620 0120 140053E3 		cmp	r3, #20
+ 621 0124 F9FFFF1A 		bne	.L114
+ 622 0128 017044E2 		sub	r7, r4, #1
+ 623              	.L112:
+ 624 012c 28208DE2 		add	r2, sp, #40
+ 625 0130 043082E0 		add	r3, r2, r4
+ 626 0134 0040A0E3 		mov	r4, #0
+ 627 0138 284043E5 		strb	r4, [r3, #-40]
+ 628 013c 34009FE5 		ldr	r0, .L128+12
+ 629 0140 FEFFFFEB 		bl	printf
+ 630 0144 0D00A0E1 		mov	r0, sp
+ 631 0148 FEFFFFEB 		bl	parse
+ 632 014c 28009FE5 		ldr	r0, .L128+16
+ 633 0150 FEFFFFEB 		bl	printf
+ 634 0154 B8FFFFEA 		b	.L103
+ 635              	.L127:
+ 636 0158 28208DE2 		add	r2, sp, #40
+ 637 015c 043082E0 		add	r3, r2, r4
+ 638 0160 286043E5 		strb	r6, [r3, #-40]
+ 639 0164 014084E2 		add	r4, r4, #1
+ 640 0168 DEFFFFEA 		b	.L111
+ 641              	.L129:
+ 642              		.align	2
+ 643              	.L128:
+ 644 016c D9010000 		.word	.LC31
+ 645 0170 FD010000 		.word	.LC32
+ 646 0174 0C020000 		.word	.LC33
+ 647 0178 C7010000 		.word	.LC29
+ 648 017c 15020000 		.word	.LC34
+ 650              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 651              	.LC0:
+ 652 0000 25303858 		.ascii	"%08X:\000"
+ 652      3A00
+ 653              	.LC1:
+ 654 0006 25303858 		.ascii	"%08X \000"
+ 654      2000
+ 655              	.LC2:
+ 656 000c 0A253038 		.ascii	"\012%08X:\000"
+ 656      583A00
+ 657              	.LC3:
+ 658 0013 0A0A00   		.ascii	"\012\012\000"
+ 659              	.LC4:
+ 660 0016 6D656D20 		.ascii	"mem 0x%08x = 0x%08x\012\000"
+ 660      30782530 
+ 660      3878203D 
+ 660      20307825 
+ 660      3038780A 
+ 661              	.LC5:
+ 662 002b 2000     		.ascii	" \000"
+ 663              	.LC6:
+ 664 002d 436F6D6D 		.ascii	"Commands\012\000"
+ 664      616E6473 
+ 664      0A00
+ 665              	.LC7:
+ 666 0037 6C00     		.ascii	"l\000"
+ 667              	.LC8:
+ 668 0039 3A204C6F 		.ascii	": Load elf file\012\000"
+ 668      61642065 
+ 668      6C662066 
+ 668      696C650A 
+ 668      00
+ 669              	.LC9:
+ 670 004a 62203C61 		.ascii	"b <address>\000"
+ 670      64647265 
+ 670      73733E00 
+ 671              	.LC10:
+ 672 0056 3A204C6F 		.ascii	": Load binary file to <address>\012\000"
+ 672      61642062 
+ 672      696E6172 
+ 672      79206669 
+ 672      6C652074 
+ 673              	.LC11:
+ 674 0077 64203C73 		.ascii	"d <start address> <num bytes> : Dump mem\012\000"
+ 674      74617274 
+ 674      20616464 
+ 674      72657373 
+ 674      3E203C6E 
+ 675              	.LC12:
+ 676 00a1 6800     		.ascii	"h\000"
+ 677              	.LC13:
+ 678 00a3 3A205072 		.ascii	": Print help message\012\000"
+ 678      696E7420 
+ 678      68656C70 
+ 678      206D6573 
+ 678      73616765 
+ 679              	.LC14:
+ 680 00b9 6A203C61 		.ascii	"j <address>\000"
+ 680      64647265 
+ 680      73733E00 
+ 681              	.LC15:
+ 682 00c5 3A204578 		.ascii	": Execute loaded elf, jumping to <address>\012\000"
+ 682      65637574 
+ 682      65206C6F 
+ 682      61646564 
+ 682      20656C66 
+ 683              	.LC16:
+ 684 00f1 70203C61 		.ascii	"p <address>\000"
+ 684      64647265 
+ 684      73733E00 
+ 685              	.LC17:
+ 686 00fd 3A205072 		.ascii	": Print ascii mem until first 0\012\000"
+ 686      696E7420 
+ 686      61736369 
+ 686      69206D65 
+ 686      6D20756E 
+ 687              	.LC18:
+ 688 011e 72203C61 		.ascii	"r <address>\000"
+ 688      64647265 
+ 688      73733E00 
+ 689              	.LC19:
+ 690 012a 3A205265 		.ascii	": Read mem\012\000"
+ 690      6164206D 
+ 690      656D0A00 
+ 691              	.LC20:
+ 692 0136 7300     		.ascii	"s\000"
+ 693              	.LC21:
+ 694 0138 3A20436F 		.ascii	": Core status\012\000"
+ 694      72652073 
+ 694      74617475 
+ 694      730A00
+ 695              	.LC22:
+ 696 0147 77203C61 		.ascii	"w <address> <value>\000"
+ 696      64647265 
+ 696      73733E20 
+ 696      3C76616C 
+ 696      75653E00 
+ 697              	.LC23:
+ 698 015b 3A205772 		.ascii	": Write mem\012\000"
+ 698      69746520 
+ 698      6D656D0A 
+ 698      00
+ 699              	.LC24:
+ 700 0168 25730A00 		.ascii	"%s\012\000"
+ 701              	.LC25:
+ 702 016c 53656E64 		.ascii	"Send file w/ 1K Xmodem protocol now...\000"
+ 702      2066696C 
+ 702      6520772F 
+ 702      20314B20 
+ 702      586D6F64 
+ 703              	.LC26:
+ 704 0193 586D6F64 		.ascii	"Xmodem error file size 0x%x \012\000"
+ 704      656D2065 
+ 704      72726F72 
+ 704      2066696C 
+ 704      65207369 
+ 705              	.LC27:
+ 706 01b1 0A656C66 		.ascii	"\012elf split\012\000"
+ 706      2073706C 
+ 706      69740A00 
+ 707              	.LC28:
+ 708 01bd 6A203078 		.ascii	"j 0x%08x\012\000"
+ 708      25303878 
+ 708      0A00
+ 709              	.LC29:
+ 710 01c7 0A00     		.ascii	"\012\000"
+ 711              	.LC30:
+ 712 01c9 496E7661 		.ascii	"Invalid command\000"
+ 712      6C696420 
+ 712      636F6D6D 
+ 712      616E6400 
+ 713              	.LC31:
+ 714 01d9 0A25633E 		.ascii	"\012%c>>> Amber Boot Loader v%s <<<\012\012\012\000"
+ 714      3E3E2041 
+ 714      6D626572 
+ 714      20426F6F 
+ 714      74204C6F 
+ 715              	.LC32:
+ 716 01fd 32303133 		.ascii	"20130511142809\000"
+ 716      30353131 
+ 716      31343238 
+ 716      303900
+ 717              	.LC33:
+ 718 020c 52656164 		.ascii	"Ready\012> \000"
+ 718      790A3E20 
+ 718      00
+ 719              	.LC34:
+ 720 0215 3E2000   		.ascii	"> \000"
+ 721              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140725 (release) [ARM/embedded-4_8-br
+DEFINED SYMBOLS
+                            *ABS*:00000000 boot-loader-serial.c
+     /tmp/ccoDN7BV.s:14     .text:00000000 $a
+     /tmp/ccoDN7BV.s:17     .text:00000000 dump_mem
+     /tmp/ccoDN7BV.s:55     .text:00000074 $d
+     /tmp/ccoDN7BV.s:60     .text:00000084 $a
+     /tmp/ccoDN7BV.s:63     .text:00000084 printm
+     /tmp/ccoDN7BV.s:74     .text:00000094 $d
+     /tmp/ccoDN7BV.s:76     .text:00000098 $a
+     /tmp/ccoDN7BV.s:79     .text:00000098 print_spaces
+     /tmp/ccoDN7BV.s:96     .text:000000bc $d
+     /tmp/ccoDN7BV.s:98     .text:000000c0 $a
+     /tmp/ccoDN7BV.s:101    .text:000000c0 print_help
+     /tmp/ccoDN7BV.s:161    .text:00000198 $d
+     /tmp/ccoDN7BV.s:180    .text:000001e0 $a
+     /tmp/ccoDN7BV.s:183    .text:000001e0 load_run
+     /tmp/ccoDN7BV.s:193    .text:000001f8 $d
+     /tmp/ccoDN7BV.s:199    .text:0000020c $a
+     /tmp/ccoDN7BV.s:273    .text:00000304 $d
+     /tmp/ccoDN7BV.s:280    .text:0000031c $a
+     /tmp/ccoDN7BV.s:283    .text:0000031c get_hex
+     /tmp/ccoDN7BV.s:343    .text:000003d8 get_address_data
+     /tmp/ccoDN7BV.s:370    .text:00000420 parse
+     /tmp/ccoDN7BV.s:529    .text:0000063c $d
+     /tmp/ccoDN7BV.s:534    .text.startup:00000000 $a
+     /tmp/ccoDN7BV.s:537    .text.startup:00000000 main
+     /tmp/ccoDN7BV.s:644    .text.startup:0000016c $d
+
+UNDEFINED SYMBOLS
+printf
+xmodemReceive
+elfsplitter
+_core_status
+_jump_to_program
+_testpass
+memcpy
+_outbyte
+_inbyte

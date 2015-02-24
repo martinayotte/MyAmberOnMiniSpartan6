@@ -1,0 +1,223 @@
+   1              		.arch armv2a
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.file	"xmodem.c"
+  13              		.text
+  14              		.align	2
+  16              	flushinput:
+  17              		@ args = 0, pretend = 0, frame = 0
+  18              		@ frame_needed = 0, uses_anonymous_args = 0
+  19 0000 08402DE9 		stmfd	sp!, {r3, lr}
+  20              	.L3:
+  21 0004 4B0FA0E3 		mov	r0, #300
+  22 0008 FEFFFFEB 		bl	_inbyte
+  23 000c 000050E3 		cmp	r0, #0
+  24 0010 FBFFFFAA 		bge	.L3
+  25 0014 0880BDE8 		ldmfd	sp!, {r3, pc}
+  27              		.align	2
+  28              		.global	xmodemReceive
+  30              	xmodemReceive:
+  31              		@ args = 0, pretend = 0, frame = 1040
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0018 F04F2DE9 		stmfd	sp!, {r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  34 001c 41DE4DE2 		sub	sp, sp, #1040
+  35 0020 04D04DE2 		sub	sp, sp, #4
+  36 0024 00A0A0E1 		mov	r10, r0
+  37 0028 01B0A0E1 		mov	fp, r1
+  38 002c 1990A0E3 		mov	r9, #25
+  39 0030 0060A0E3 		mov	r6, #0
+  40 0034 0180A0E3 		mov	r8, #1
+  41 0038 4350A0E3 		mov	r5, #67
+  42 003c 0670A0E1 		mov	r7, r6
+  43              	.L6:
+  44 0040 5040A0E3 		mov	r4, #80
+  45              	.L17:
+  46 0044 000055E3 		cmp	r5, #0
+  47 0048 0500A011 		movne	r0, r5
+  48 004c FEFFFF1B 		blne	_outbyte
+  49              	.L7:
+  50 0050 FA0FA0E3 		mov	r0, #1000
+  51 0054 FEFFFFEB 		bl	_inbyte
+  52 0058 000050E3 		cmp	r0, #0
+  53 005c 180000BA 		blt	.L9
+  54 0060 020050E3 		cmp	r0, #2
+  55 0064 2600000A 		beq	.L35
+  56 0068 020000CA 		bgt	.L11
+  57 006c 010050E3 		cmp	r0, #1
+  58 0070 2100000A 		beq	.L12
+  59 0074 120000EA 		b	.L9
+  60              	.L11:
+  61 0078 040050E3 		cmp	r0, #4
+  62 007c 0200000A 		beq	.L13
+  63 0080 180050E3 		cmp	r0, #24
+  64 0084 0500000A 		beq	.L14
+  65 0088 0D0000EA 		b	.L9
+  66              	.L13:
+  67 008c 0600A0E3 		mov	r0, #6
+  68 0090 FEFFFFEB 		bl	_outbyte
+  69 0094 D9FFFFEB 		bl	flushinput
+  70 0098 0600A0E1 		mov	r0, r6
+  71 009c 780000EA 		b	.L42
+  72              	.L14:
+  73 00a0 FA0FA0E3 		mov	r0, #1000
+  74 00a4 FEFFFFEB 		bl	_inbyte
+  75 00a8 180050E3 		cmp	r0, #24
+  76 00ac 0400001A 		bne	.L9
+  77 00b0 D2FFFFEB 		bl	flushinput
+  78 00b4 0600A0E3 		mov	r0, #6
+  79 00b8 FEFFFFEB 		bl	_outbyte
+  80 00bc 0000E0E3 		mvn	r0, #0
+  81 00c0 6F0000EA 		b	.L42
+  82              	.L9:
+  83 00c4 014054E2 		subs	r4, r4, #1
+  84 00c8 DDFFFF1A 		bne	.L17
+  85 00cc 430055E3 		cmp	r5, #67
+  86 00d0 1550A003 		moveq	r5, #21
+  87 00d4 D9FFFF0A 		beq	.L6
+  88              	.L44:
+  89 00d8 C8FFFFEB 		bl	flushinput
+  90 00dc 1800A0E3 		mov	r0, #24
+  91 00e0 FEFFFFEB 		bl	_outbyte
+  92 00e4 1800A0E3 		mov	r0, #24
+  93 00e8 FEFFFFEB 		bl	_outbyte
+  94 00ec 1800A0E3 		mov	r0, #24
+  95 00f0 FEFFFFEB 		bl	_outbyte
+  96 00f4 0100E0E3 		mvn	r0, #1
+  97 00f8 610000EA 		b	.L42
+  98              	.L12:
+  99 00fc 8040A0E3 		mov	r4, #128
+ 100 0100 000000EA 		b	.L10
+ 101              	.L35:
+ 102 0104 014BA0E3 		mov	r4, #1024
+ 103              	.L10:
+ 104 0108 430055E3 		cmp	r5, #67
+ 105 010c 0170A003 		moveq	r7, #1
+ 106 0110 0800CDE5 		strb	r0, [sp, #8]
+ 107 0114 0050A0E3 		mov	r5, #0
+ 108              	.L20:
+ 109 0118 073084E0 		add	r3, r4, r7
+ 110 011c 023083E2 		add	r3, r3, #2
+ 111 0120 050053E1 		cmp	r3, r5
+ 112 0124 080000BA 		blt	.L45
+ 113 0128 FA0FA0E3 		mov	r0, #1000
+ 114 012c FEFFFFEB 		bl	_inbyte
+ 115 0130 015085E2 		add	r5, r5, #1
+ 116 0134 000050E3 		cmp	r0, #0
+ 117 0138 2B0000BA 		blt	.L32
+ 118 013c 082085E2 		add	r2, r5, #8
+ 119 0140 0D10A0E1 		mov	r1, sp
+ 120 0144 0100C2E7 		strb	r0, [r2, r1]
+ 121 0148 F2FFFFEA 		b	.L20
+ 122              	.L45:
+ 123 014c 0930DDE5 		ldrb	r3, [sp, #9]	@ zero_extendqisi2
+ 124 0150 0A20DDE5 		ldrb	r2, [sp, #10]	@ zero_extendqisi2
+ 125 0154 0220E0E1 		mvn	r2, r2
+ 126 0158 FF2002E2 		and	r2, r2, #255
+ 127 015c 020053E1 		cmp	r3, r2
+ 128 0160 2100001A 		bne	.L32
+ 129 0164 080053E1 		cmp	r3, r8
+ 130 0168 0200000A 		beq	.L23
+ 131 016c 012048E2 		sub	r2, r8, #1
+ 132 0170 020053E1 		cmp	r3, r2
+ 133 0174 1C00001A 		bne	.L32
+ 134              	.L23:
+ 135 0178 000057E3 		cmp	r7, #0
+ 136 017c 08508DE2 		add	r5, sp, #8
+ 137 0180 0530A001 		moveq	r3, r5
+ 138 0184 0720A001 		moveq	r2, r7
+ 139 0188 0B00000A 		beq	.L28
+ 140 018c 030085E2 		add	r0, r5, #3
+ 141 0190 0410A0E1 		mov	r1, r4
+ 142 0194 FEFFFFEB 		bl	crc16_ccitt
+ 143 0198 411E8DE2 		add	r1, sp, #1040
+ 144 019c 043081E0 		add	r3, r1, r4
+ 145 01a0 042453E5 		ldrb	r2, [r3, #-1028]	@ zero_extendqisi2
+ 146 01a4 053453E5 		ldrb	r3, [r3, #-1029]	@ zero_extendqisi2
+ 147 01a8 033482E0 		add	r3, r2, r3, asl #8
+ 148 01ac 0338A0E1 		mov	r3, r3, asl #16
+ 149 01b0 230850E1 		cmp	r0, r3, lsr #16
+ 150 01b4 0C00001A 		bne	.L32
+ 151 01b8 100000EA 		b	.L25
+ 152              	.L28:
+ 153 01bc 0310D3E5 		ldrb	r1, [r3, #3]	@ zero_extendqisi2
+ 154 01c0 012082E0 		add	r2, r2, r1
+ 155 01c4 FF2002E2 		and	r2, r2, #255
+ 156 01c8 013083E2 		add	r3, r3, #1
+ 157 01cc 031065E0 		rsb	r1, r5, r3
+ 158 01d0 040051E1 		cmp	r1, r4
+ 159 01d4 F8FFFFBA 		blt	.L28
+ 160 01d8 411E8DE2 		add	r1, sp, #1040
+ 161 01dc 043081E0 		add	r3, r1, r4
+ 162 01e0 053453E5 		ldrb	r3, [r3, #-1029]	@ zero_extendqisi2
+ 163 01e4 020053E1 		cmp	r3, r2
+ 164 01e8 0400000A 		beq	.L25
+ 165              	.L32:
+ 166 01ec 83FFFFEB 		bl	flushinput
+ 167 01f0 1500A0E3 		mov	r0, #21
+ 168              	.L43:
+ 169 01f4 FEFFFFEB 		bl	_outbyte
+ 170 01f8 0050A0E3 		mov	r5, #0
+ 171 01fc 8FFFFFEA 		b	.L6
+ 172              	.L25:
+ 173 0200 09C0DDE5 		ldrb	ip, [sp, #9]	@ zero_extendqisi2
+ 174 0204 08005CE1 		cmp	ip, r8
+ 175 0208 0F00001A 		bne	.L34
+ 176 020c 0B3066E0 		rsb	r3, r6, fp
+ 177 0210 040053E1 		cmp	r3, r4
+ 178 0214 020000CA 		bgt	.L29
+ 179 0218 000053E3 		cmp	r3, #0
+ 180 021c 070000DA 		ble	.L30
+ 181 0220 0340A0E1 		mov	r4, r3
+ 182              	.L29:
+ 183 0224 06008AE0 		add	r0, r10, r6
+ 184 0228 031085E2 		add	r1, r5, #3
+ 185 022c 0420A0E1 		mov	r2, r4
+ 186 0230 04C08DE5 		str	ip, [sp, #4]
+ 187 0234 FEFFFFEB 		bl	memcpy
+ 188 0238 046086E0 		add	r6, r6, r4
+ 189 023c 04C09DE5 		ldr	ip, [sp, #4]
+ 190              	.L30:
+ 191 0240 01808CE2 		add	r8, ip, #1
+ 192 0244 FF8008E2 		and	r8, r8, #255
+ 193 0248 1A90A0E3 		mov	r9, #26
+ 194              	.L34:
+ 195 024c 019049E2 		sub	r9, r9, #1
+ 196 0250 000059E3 		cmp	r9, #0
+ 197 0254 080000CA 		bgt	.L31
+ 198 0258 68FFFFEB 		bl	flushinput
+ 199 025c 1800A0E3 		mov	r0, #24
+ 200 0260 FEFFFFEB 		bl	_outbyte
+ 201 0264 1800A0E3 		mov	r0, #24
+ 202 0268 FEFFFFEB 		bl	_outbyte
+ 203 026c 1800A0E3 		mov	r0, #24
+ 204 0270 FEFFFFEB 		bl	_outbyte
+ 205 0274 0200E0E3 		mvn	r0, #2
+ 206 0278 010000EA 		b	.L42
+ 207              	.L31:
+ 208 027c 0600A0E3 		mov	r0, #6
+ 209 0280 DBFFFFEA 		b	.L43
+ 210              	.L42:
+ 211 0284 41DE8DE2 		add	sp, sp, #1040
+ 212 0288 04D08DE2 		add	sp, sp, #4
+ 213              		@ sp needed
+ 214 028c F08FBDE8 		ldmfd	sp!, {r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 216              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140725 (release) [ARM/embedded-4_8-br
+DEFINED SYMBOLS
+                            *ABS*:00000000 xmodem.c
+     /tmp/cc9UBXBs.s:14     .text:00000000 $a
+     /tmp/cc9UBXBs.s:16     .text:00000000 flushinput
+     /tmp/cc9UBXBs.s:30     .text:00000018 xmodemReceive
+
+UNDEFINED SYMBOLS
+_inbyte
+_outbyte
+crc16_ccitt
+memcpy
