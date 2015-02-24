@@ -1,0 +1,801 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/trce -intstyle ise -v 3 -s 3 -n
+3 -fastpaths -xml system.twx system.ncd -o system.twr system.pcf -ucf
+MyAmber.ucf
+
+Design file:              system.ncd
+Physical constraint file: system.pcf
+Device,package,speed:     xc6slx25,ftg256,C,-3 (PRODUCTION 1.23 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: NET "brd_clk_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 1010736574 paths analyzed, 10631 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is  19.658ns.
+--------------------------------------------------------------------------------
+
+Paths for end point u_amber/u_execute/o_copro_write_data_17 (SLICE_X19Y47.BX), 441987 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     0.342ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               u_amber/u_execute/status_bits_mode_1 (FF)
+  Destination:          u_amber/u_execute/o_copro_write_data_17 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      19.665ns (Levels of Logic = 13)
+  Clock Path Skew:      0.042ns (0.499 - 0.457)
+  Source Clock:         brd_clk_BUFGP rising at 0.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: u_amber/u_execute/status_bits_mode_1 to u_amber/u_execute/o_copro_write_data_17
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X37Y55.BQ      Tcko                  0.391   u_amber/u_execute/status_bits_mode<1>
+                                                       u_amber/u_execute/status_bits_mode_1
+    SLICE_X32Y50.B5      net (fanout=18)       1.914   u_amber/u_execute/status_bits_mode<1>
+    SLICE_X32Y50.B       Tilo                  0.205   u_amber/u_execute/u_register_bank/r12<9>
+                                                       u_amber/u_execute/u_register_bank/mux44311
+    SLICE_X40Y45.B4      net (fanout=2)        1.104   u_amber/u_execute/u_register_bank/r8_out<5>
+    SLICE_X40Y45.BMUX    Topbb                 0.364   u_amber/u_execute/rm<5>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_554
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_3_f7_26
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_2_f8_26
+    SLICE_X33Y35.D5      net (fanout=3)        1.396   u_amber/u_execute/rm<5>
+    SLICE_X33Y35.D       Tilo                  0.259   u_amber/u_execute/barrel_shift_in<5>1
+                                                       u_amber/u_execute/barrel_shift_in<5>1_1
+    SLICE_X32Y31.A6      net (fanout=2)        1.506   u_amber/u_execute/barrel_shift_in<5>1
+    SLICE_X32Y31.A       Tilo                  0.205   u_amber/u_execute/u_barrel_shift/i_shift_amount<0>_mmx_out172
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<0>_mmx_out311
+    SLICE_X51Y31.A2      net (fanout=6)        1.648   u_amber/u_execute/u_barrel_shift/i_shift_amount<0>_mmx_out31
+    SLICE_X51Y31.A       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out25
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<2>921_SW0
+    SLICE_X51Y31.B4      net (fanout=1)        0.494   N925
+    SLICE_X51Y31.B       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out25
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<3>1811
+    SLICE_X51Y34.C1      net (fanout=2)        0.884   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out25
+    SLICE_X51Y34.C       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux__n0995_4
+                                                       u_amber/u_execute/u_barrel_shift/Mmux_n0735121
+    SLICE_X46Y34.C1      net (fanout=3)        1.050   u_amber/u_execute/u_barrel_shift/Mmux_n073512
+    SLICE_X46Y34.C       Tilo                  0.204   u_amber/u_fetch/u_cache/miss_address<21>
+                                                       u_amber/u_execute/u_alu/Mmux_a61
+    SLICE_X42Y38.CX      net (fanout=1)        0.912   u_amber/u_execute/u_alu/a<14>
+    SLICE_X42Y38.COUT    Tcxcy                 0.093   u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<15>
+                                                       u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<15>
+    SLICE_X42Y39.CIN     net (fanout=1)        0.003   u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<15>
+    SLICE_X42Y39.BMUX    Tcinb                 0.292   u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<19>
+                                                       u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<19>
+    SLICE_X40Y44.B3      net (fanout=3)        0.832   u_amber/u_execute/u_alu/fadder_out<17>
+    SLICE_X40Y44.B       Tilo                  0.205   u_amber/u_execute/u_register_bank/r15<15>
+                                                       u_amber/u_execute/Mmux_pc_nxt81
+    SLICE_X27Y57.B2      net (fanout=1)        2.510   u_amber/u_execute/pc_nxt<17>
+    SLICE_X27Y57.B       Tilo                  0.259   u_amber/u_execute/u_register_bank/r3<21>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_48
+    SLICE_X27Y57.A5      net (fanout=1)        0.187   u_amber/u_execute/u_register_bank/Mmux_o_rd_48
+    SLICE_X27Y57.A       Tilo                  0.259   u_amber/u_execute/u_register_bank/r3<21>
+                                                       u_amber/u_execute/Mmux_write_data_nxt<17>11
+    SLICE_X19Y47.BX      net (fanout=2)        1.649   u_amber/u_execute/write_data_nxt<17>
+    SLICE_X19Y47.CLK     Tdick                 0.063   u_amber/u_execute/o_copro_write_data<19>
+                                                       u_amber/u_execute/o_copro_write_data_17
+    -------------------------------------------------  ---------------------------
+    Total                                     19.665ns (3.576ns logic, 16.089ns route)
+                                                       (18.2% logic, 81.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.467ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               u_amber/u_execute/status_bits_mode_0_2 (FF)
+  Destination:          u_amber/u_execute/o_copro_write_data_17 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      19.545ns (Levels of Logic = 11)
+  Clock Path Skew:      0.047ns (0.499 - 0.452)
+  Source Clock:         brd_clk_BUFGP rising at 0.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: u_amber/u_execute/status_bits_mode_0_2 to u_amber/u_execute/o_copro_write_data_17
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X29Y52.BQ      Tcko                  0.391   u_amber/u_execute/status_bits_mode_0_4
+                                                       u_amber/u_execute/status_bits_mode_0_2
+    SLICE_X22Y54.D3      net (fanout=18)       1.032   u_amber/u_execute/status_bits_mode_0_2
+    SLICE_X22Y54.D       Tilo                  0.203   u_amber/u_execute/u_register_bank/r12<14>
+                                                       u_amber/u_execute/u_register_bank/mux37112
+    SLICE_X28Y50.A1      net (fanout=2)        1.871   u_amber/u_execute/u_register_bank/r14_out<14>
+    SLICE_X28Y50.BMUX    Topab                 0.376   u_amber/u_execute/rm<14>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_45
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_3_f7_4
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_2_f8_4
+    SLICE_X31Y33.B3      net (fanout=2)        2.776   u_amber/u_execute/rm<14>
+    SLICE_X31Y33.B       Tilo                  0.259   u_amber/u_execute/barrel_shift_in<3>
+                                                       u_amber/u_execute/barrel_shift_in<14>1
+    SLICE_X29Y35.B4      net (fanout=16)       1.596   u_amber/u_execute/barrel_shift_in<14>
+    SLICE_X29Y35.B       Tilo                  0.259   u_amber/u_execute/barrel_shift_in<8>
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<1>121
+    SLICE_X43Y32.B5      net (fanout=3)        1.020   u_amber/u_execute/u_barrel_shift/i_shift_amount<1>_mmx_out2
+    SLICE_X43Y32.B       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735163
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<3>103
+    SLICE_X43Y32.A5      net (fanout=2)        0.195   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out3
+    SLICE_X43Y32.A       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735163
+                                                       u_amber/u_execute/u_barrel_shift/Mmux_n0735166
+    SLICE_X48Y37.C1      net (fanout=3)        1.541   u_amber/u_execute/u_barrel_shift/Mmux_n0735165
+    SLICE_X48Y37.C       Tilo                  0.205   N1337
+                                                       u_amber/u_execute/u_alu/Mmux_a81
+    SLICE_X42Y39.AX      net (fanout=3)        1.084   u_amber/u_execute/u_alu/a<16>
+    SLICE_X42Y39.BMUX    Taxb                  0.255   u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<19>
+                                                       u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<19>
+    SLICE_X40Y44.B3      net (fanout=3)        0.832   u_amber/u_execute/u_alu/fadder_out<17>
+    SLICE_X40Y44.B       Tilo                  0.205   u_amber/u_execute/u_register_bank/r15<15>
+                                                       u_amber/u_execute/Mmux_pc_nxt81
+    SLICE_X27Y57.B2      net (fanout=1)        2.510   u_amber/u_execute/pc_nxt<17>
+    SLICE_X27Y57.B       Tilo                  0.259   u_amber/u_execute/u_register_bank/r3<21>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_48
+    SLICE_X27Y57.A5      net (fanout=1)        0.187   u_amber/u_execute/u_register_bank/Mmux_o_rd_48
+    SLICE_X27Y57.A       Tilo                  0.259   u_amber/u_execute/u_register_bank/r3<21>
+                                                       u_amber/u_execute/Mmux_write_data_nxt<17>11
+    SLICE_X19Y47.BX      net (fanout=2)        1.649   u_amber/u_execute/write_data_nxt<17>
+    SLICE_X19Y47.CLK     Tdick                 0.063   u_amber/u_execute/o_copro_write_data<19>
+                                                       u_amber/u_execute/o_copro_write_data_17
+    -------------------------------------------------  ---------------------------
+    Total                                     19.545ns (3.252ns logic, 16.293ns route)
+                                                       (16.6% logic, 83.4% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.531ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               u_amber/u_execute/u_register_bank/r14_irq_14 (FF)
+  Destination:          u_amber/u_execute/o_copro_write_data_17 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      19.452ns (Levels of Logic = 11)
+  Clock Path Skew:      0.018ns (0.499 - 0.481)
+  Source Clock:         brd_clk_BUFGP rising at 0.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: u_amber/u_execute/u_register_bank/r14_irq_14 to u_amber/u_execute/o_copro_write_data_17
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y56.CQ      Tcko                  0.447   u_amber/u_execute/u_register_bank/r14_irq<15>
+                                                       u_amber/u_execute/u_register_bank/r14_irq_14
+    SLICE_X22Y54.D4      net (fanout=2)        0.883   u_amber/u_execute/u_register_bank/r14_irq<14>
+    SLICE_X22Y54.D       Tilo                  0.203   u_amber/u_execute/u_register_bank/r12<14>
+                                                       u_amber/u_execute/u_register_bank/mux37112
+    SLICE_X28Y50.A1      net (fanout=2)        1.871   u_amber/u_execute/u_register_bank/r14_out<14>
+    SLICE_X28Y50.BMUX    Topab                 0.376   u_amber/u_execute/rm<14>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_45
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_3_f7_4
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_2_f8_4
+    SLICE_X31Y33.B3      net (fanout=2)        2.776   u_amber/u_execute/rm<14>
+    SLICE_X31Y33.B       Tilo                  0.259   u_amber/u_execute/barrel_shift_in<3>
+                                                       u_amber/u_execute/barrel_shift_in<14>1
+    SLICE_X29Y35.B4      net (fanout=16)       1.596   u_amber/u_execute/barrel_shift_in<14>
+    SLICE_X29Y35.B       Tilo                  0.259   u_amber/u_execute/barrel_shift_in<8>
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<1>121
+    SLICE_X43Y32.B5      net (fanout=3)        1.020   u_amber/u_execute/u_barrel_shift/i_shift_amount<1>_mmx_out2
+    SLICE_X43Y32.B       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735163
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<3>103
+    SLICE_X43Y32.A5      net (fanout=2)        0.195   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out3
+    SLICE_X43Y32.A       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735163
+                                                       u_amber/u_execute/u_barrel_shift/Mmux_n0735166
+    SLICE_X48Y37.C1      net (fanout=3)        1.541   u_amber/u_execute/u_barrel_shift/Mmux_n0735165
+    SLICE_X48Y37.C       Tilo                  0.205   N1337
+                                                       u_amber/u_execute/u_alu/Mmux_a81
+    SLICE_X42Y39.AX      net (fanout=3)        1.084   u_amber/u_execute/u_alu/a<16>
+    SLICE_X42Y39.BMUX    Taxb                  0.255   u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<19>
+                                                       u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<19>
+    SLICE_X40Y44.B3      net (fanout=3)        0.832   u_amber/u_execute/u_alu/fadder_out<17>
+    SLICE_X40Y44.B       Tilo                  0.205   u_amber/u_execute/u_register_bank/r15<15>
+                                                       u_amber/u_execute/Mmux_pc_nxt81
+    SLICE_X27Y57.B2      net (fanout=1)        2.510   u_amber/u_execute/pc_nxt<17>
+    SLICE_X27Y57.B       Tilo                  0.259   u_amber/u_execute/u_register_bank/r3<21>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_48
+    SLICE_X27Y57.A5      net (fanout=1)        0.187   u_amber/u_execute/u_register_bank/Mmux_o_rd_48
+    SLICE_X27Y57.A       Tilo                  0.259   u_amber/u_execute/u_register_bank/r3<21>
+                                                       u_amber/u_execute/Mmux_write_data_nxt<17>11
+    SLICE_X19Y47.BX      net (fanout=2)        1.649   u_amber/u_execute/write_data_nxt<17>
+    SLICE_X19Y47.CLK     Tdick                 0.063   u_amber/u_execute/o_copro_write_data<19>
+                                                       u_amber/u_execute/o_copro_write_data_17
+    -------------------------------------------------  ---------------------------
+    Total                                     19.452ns (3.308ns logic, 16.144ns route)
+                                                       (17.0% logic, 83.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer (RAMB8_X1Y13.ADDRAWRADDR11), 1980917 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     0.346ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               u_amber/u_execute/u_register_bank/r10_6 (FF)
+  Destination:          u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer (RAM)
+  Requirement:          20.000ns
+  Data Path Delay:      19.670ns (Levels of Logic = 11)
+  Clock Path Skew:      0.051ns (0.517 - 0.466)
+  Source Clock:         brd_clk_BUFGP rising at 0.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: u_amber/u_execute/u_register_bank/r10_6 to u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer
+    Location                  Delay type         Delay(ns)  Physical Resource
+                                                            Logical Resource(s)
+    ------------------------------------------------------  -------------------
+    SLICE_X36Y52.BQ           Tcko                  0.408   u_amber/u_execute/u_register_bank/r10<6>
+                                                            u_amber/u_execute/u_register_bank/r10_6
+    SLICE_X35Y49.A5           net (fanout=2)        1.013   u_amber/u_execute/u_register_bank/r10<6>
+    SLICE_X35Y49.A            Tilo                  0.259   u_amber/u_execute/u_register_bank/r13<7>
+                                                            u_amber/u_execute/u_register_bank/mux15611
+    SLICE_X34Y41.B1           net (fanout=2)        2.487   u_amber/u_execute/u_register_bank/r10_rds<6>
+    SLICE_X34Y41.BMUX         Topbb                 0.361   u_amber/u_execute/rs<6>
+                                                            u_amber/u_execute/u_register_bank/Mmux_o_rd_556
+                                                            u_amber/u_execute/u_register_bank/Mmux_o_rs_3_f7_27
+                                                            u_amber/u_execute/u_register_bank/Mmux_o_rs_2_f8_27
+    SLICE_X40Y32.D6           net (fanout=13)       1.075   u_amber/u_execute/rs<6>
+    SLICE_X40Y32.D            Tilo                  0.205   u_amber/u_execute/shift_amount<6>
+                                                            u_amber/u_execute/Mmux_shift_amount71
+    SLICE_X36Y28.C4           net (fanout=8)        1.168   u_amber/u_execute/shift_amount<6>
+    SLICE_X36Y28.C            Tilo                  0.205   u_amber/u_execute/u_barrel_shift/Mmux_n0735392
+                                                            u_amber/u_execute/u_barrel_shift/i_shift_amount[7]_GND_11_o_equal_135_o<7>1_1
+    SLICE_X31Y41.B3           net (fanout=3)        1.781   u_amber/u_execute/u_barrel_shift/i_shift_amount[7]_GND_11_o_equal_135_o<7>1
+    SLICE_X31Y41.B            Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735221
+                                                            u_amber/u_execute/u_barrel_shift/Mmux_n07352211
+    SLICE_X31Y36.A2           net (fanout=10)       0.874   u_amber/u_execute/u_barrel_shift/Mmux_n0735221
+    SLICE_X31Y36.A            Tilo                  0.259   u_amber/u_execute/u_alu/o_out<9>1
+                                                            u_amber/u_execute/u_barrel_shift/Mmux_n0735604
+    SLICE_X40Y40.B3           net (fanout=3)        1.025   u_amber/u_execute/u_barrel_shift/Mmux_n0735604
+    SLICE_X40Y40.B            Tilo                  0.205   u_amber/u_execute/barrel_shift_out<7>
+                                                            u_amber/u_execute/u_barrel_shift/Mmux_n0735608
+    SLICE_X45Y41.A6           net (fanout=4)        0.527   u_amber/u_execute/barrel_shift_out<7>
+    SLICE_X45Y41.A            Tilo                  0.259   u_amber/u_execute/alu_out<10>
+                                                            u_amber/u_execute/u_alu/o_out<10>31
+    SLICE_X51Y37.C5           net (fanout=19)       1.090   u_amber/u_execute/u_alu/o_out<10>3
+    SLICE_X51Y37.C            Tilo                  0.259   N1201
+                                                            u_amber/u_execute/u_alu/o_out<10>4_SW0
+    SLICE_X44Y37.A2           net (fanout=1)        1.113   N1200
+    SLICE_X44Y37.AMUX         Topaa                 0.377   u_amber/u_execute/Mmux__n04167_rs_cy<13>
+                                                            u_amber/u_execute/Mmux__n04167_A210
+                                                            u_amber/u_execute/Mmux__n04167_rs_cy<13>
+    SLICE_X13Y35.A5           net (fanout=3)        1.796   u_amber/u_execute/Mmux__n04167_split<10>
+    SLICE_X13Y35.A            Tilo                  0.259   N934
+                                                            u_amber/u_fetch/u_cache/Mmux_data_address71
+    RAMB8_X1Y13.ADDRAWRADDR11 net (fanout=32)       2.056   u_amber/u_fetch/u_cache/data_address<6>
+    RAMB8_X1Y13.CLKAWRCLK     Trcck_ADDRA           0.350   u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer
+                                                            u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer
+    ------------------------------------------------------  ---------------------------
+    Total                                          19.670ns (3.665ns logic, 16.005ns route)
+                                                            (18.6% logic, 81.4% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.436ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               u_amber/u_execute/u_register_bank/r10_6 (FF)
+  Destination:          u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer (RAM)
+  Requirement:          20.000ns
+  Data Path Delay:      19.580ns (Levels of Logic = 11)
+  Clock Path Skew:      0.051ns (0.517 - 0.466)
+  Source Clock:         brd_clk_BUFGP rising at 0.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: u_amber/u_execute/u_register_bank/r10_6 to u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer
+    Location                  Delay type         Delay(ns)  Physical Resource
+                                                            Logical Resource(s)
+    ------------------------------------------------------  -------------------
+    SLICE_X36Y52.BQ           Tcko                  0.408   u_amber/u_execute/u_register_bank/r10<6>
+                                                            u_amber/u_execute/u_register_bank/r10_6
+    SLICE_X35Y49.A5           net (fanout=2)        1.013   u_amber/u_execute/u_register_bank/r10<6>
+    SLICE_X35Y49.A            Tilo                  0.259   u_amber/u_execute/u_register_bank/r13<7>
+                                                            u_amber/u_execute/u_register_bank/mux15611
+    SLICE_X34Y41.B1           net (fanout=2)        2.487   u_amber/u_execute/u_register_bank/r10_rds<6>
+    SLICE_X34Y41.BMUX         Topbb                 0.361   u_amber/u_execute/rs<6>
+                                                            u_amber/u_execute/u_register_bank/Mmux_o_rd_556
+                                                            u_amber/u_execute/u_register_bank/Mmux_o_rs_3_f7_27
+                                                            u_amber/u_execute/u_register_bank/Mmux_o_rs_2_f8_27
+    SLICE_X40Y32.D6           net (fanout=13)       1.075   u_amber/u_execute/rs<6>
+    SLICE_X40Y32.D            Tilo                  0.205   u_amber/u_execute/shift_amount<6>
+                                                            u_amber/u_execute/Mmux_shift_amount71
+    SLICE_X36Y28.C4           net (fanout=8)        1.168   u_amber/u_execute/shift_amount<6>
+    SLICE_X36Y28.C            Tilo                  0.205   u_amber/u_execute/u_barrel_shift/Mmux_n0735392
+                                                            u_amber/u_execute/u_barrel_shift/i_shift_amount[7]_GND_11_o_equal_135_o<7>1_1
+    SLICE_X31Y41.B3           net (fanout=3)        1.781   u_amber/u_execute/u_barrel_shift/i_shift_amount[7]_GND_11_o_equal_135_o<7>1
+    SLICE_X31Y41.B            Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735221
+                                                            u_amber/u_execute/u_barrel_shift/Mmux_n07352211
+    SLICE_X31Y36.A2           net (fanout=10)       0.874   u_amber/u_execute/u_barrel_shift/Mmux_n0735221
+    SLICE_X31Y36.A            Tilo                  0.259   u_amber/u_execute/u_alu/o_out<9>1
+                                                            u_amber/u_execute/u_barrel_shift/Mmux_n0735604
+    SLICE_X40Y40.B3           net (fanout=3)        1.025   u_amber/u_execute/u_barrel_shift/Mmux_n0735604
+    SLICE_X40Y40.B            Tilo                  0.205   u_amber/u_execute/barrel_shift_out<7>
+                                                            u_amber/u_execute/u_barrel_shift/Mmux_n0735608
+    SLICE_X45Y41.A6           net (fanout=4)        0.527   u_amber/u_execute/barrel_shift_out<7>
+    SLICE_X45Y41.A            Tilo                  0.259   u_amber/u_execute/alu_out<10>
+                                                            u_amber/u_execute/u_alu/o_out<10>31
+    SLICE_X51Y37.D4           net (fanout=19)       1.161   u_amber/u_execute/u_alu/o_out<10>3
+    SLICE_X51Y37.D            Tilo                  0.259   N1201
+                                                            u_amber/u_execute/u_alu/o_out<10>4_SW1
+    SLICE_X44Y37.A4           net (fanout=1)        0.952   N1201
+    SLICE_X44Y37.AMUX         Topaa                 0.377   u_amber/u_execute/Mmux__n04167_rs_cy<13>
+                                                            u_amber/u_execute/Mmux__n04167_A210
+                                                            u_amber/u_execute/Mmux__n04167_rs_cy<13>
+    SLICE_X13Y35.A5           net (fanout=3)        1.796   u_amber/u_execute/Mmux__n04167_split<10>
+    SLICE_X13Y35.A            Tilo                  0.259   N934
+                                                            u_amber/u_fetch/u_cache/Mmux_data_address71
+    RAMB8_X1Y13.ADDRAWRADDR11 net (fanout=32)       2.056   u_amber/u_fetch/u_cache/data_address<6>
+    RAMB8_X1Y13.CLKAWRCLK     Trcck_ADDRA           0.350   u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer
+                                                            u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer
+    ------------------------------------------------------  ---------------------------
+    Total                                          19.580ns (3.665ns logic, 15.915ns route)
+                                                            (18.7% logic, 81.3% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.513ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               u_amber/u_execute/status_bits_mode_0_3 (FF)
+  Destination:          u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer (RAM)
+  Requirement:          20.000ns
+  Data Path Delay:      19.517ns (Levels of Logic = 11)
+  Clock Path Skew:      0.065ns (0.517 - 0.452)
+  Source Clock:         brd_clk_BUFGP rising at 0.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: u_amber/u_execute/status_bits_mode_0_3 to u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer
+    Location                  Delay type         Delay(ns)  Physical Resource
+                                                            Logical Resource(s)
+    ------------------------------------------------------  -------------------
+    SLICE_X29Y52.CQ           Tcko                  0.391   u_amber/u_execute/status_bits_mode_0_4
+                                                            u_amber/u_execute/status_bits_mode_0_3
+    SLICE_X27Y58.A5           net (fanout=18)       1.348   u_amber/u_execute/status_bits_mode_0_3
+    SLICE_X27Y58.A            Tilo                  0.259   u_amber/u_execute/u_register_bank/r14_irq<19>
+                                                            u_amber/u_execute/u_register_bank/mux40112
+    SLICE_X30Y55.A3           net (fanout=2)        1.940   u_amber/u_execute/u_register_bank/r14_out<17>
+    SLICE_X30Y55.BMUX         Topab                 0.370   u_amber/u_execute/rm<17>
+                                                            u_amber/u_execute/u_register_bank/Mmux_o_rm_48
+                                                            u_amber/u_execute/u_register_bank/Mmux_o_rm_3_f7_7
+                                                            u_amber/u_execute/u_register_bank/Mmux_o_rm_2_f8_7
+    SLICE_X33Y37.B2           net (fanout=2)        2.477   u_amber/u_execute/rm<17>
+    SLICE_X33Y37.B            Tilo                  0.259   u_amber/u_execute/barrel_shift_in<17>
+                                                            u_amber/u_execute/barrel_shift_in<17>1
+    SLICE_X35Y33.D5           net (fanout=16)       0.681   u_amber/u_execute/barrel_shift_in<17>
+    SLICE_X35Y33.D            Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux__n0959_10
+                                                            u_amber/u_execute/u_barrel_shift/Mmux__n0995_8
+    SLICE_X36Y30.A2           net (fanout=8)        1.258   u_amber/u_execute/u_barrel_shift/Mmux__n0959_10
+    SLICE_X36Y30.A            Tilo                  0.205   u_amber/u_execute/u_barrel_shift/Mmux__n0959_4
+                                                            u_amber/u_execute/u_barrel_shift/Mmux__n0983_4
+    SLICE_X40Y28.D6           net (fanout=4)        0.895   u_amber/u_execute/u_barrel_shift/Mmux__n0983_4
+    SLICE_X40Y28.CMUX         Topdc                 0.338   u_amber/u_execute/u_barrel_shift/Mmux__n0983_3
+                                                            u_amber/u_execute/u_barrel_shift/Mmux_n073548_F
+                                                            u_amber/u_execute/u_barrel_shift/Mmux_n073548
+    SLICE_X51Y37.B6           net (fanout=3)        1.473   u_amber/u_execute/u_barrel_shift/Mmux_n0735410
+    SLICE_X51Y37.B            Tilo                  0.259   N1201
+                                                            u_amber/u_execute/u_barrel_shift/Mmux_n073549
+    SLICE_X51Y37.A5           net (fanout=2)        0.193   u_amber/u_execute/barrel_shift_out<10>
+    SLICE_X51Y37.A            Tilo                  0.259   N1201
+                                                            u_amber/u_execute/u_alu/o_out<10>1_SW0
+    SLICE_X51Y37.C2           net (fanout=3)        0.443   N616
+    SLICE_X51Y37.C            Tilo                  0.259   N1201
+                                                            u_amber/u_execute/u_alu/o_out<10>4_SW0
+    SLICE_X44Y37.A2           net (fanout=1)        1.113   N1200
+    SLICE_X44Y37.AMUX         Topaa                 0.377   u_amber/u_execute/Mmux__n04167_rs_cy<13>
+                                                            u_amber/u_execute/Mmux__n04167_A210
+                                                            u_amber/u_execute/Mmux__n04167_rs_cy<13>
+    SLICE_X13Y35.A5           net (fanout=3)        1.796   u_amber/u_execute/Mmux__n04167_split<10>
+    SLICE_X13Y35.A            Tilo                  0.259   N934
+                                                            u_amber/u_fetch/u_cache/Mmux_data_address71
+    RAMB8_X1Y13.ADDRAWRADDR11 net (fanout=32)       2.056   u_amber/u_fetch/u_cache/data_address<6>
+    RAMB8_X1Y13.CLKAWRCLK     Trcck_ADDRA           0.350   u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer
+                                                            u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[2].u_ramb8bwer
+    ------------------------------------------------------  ---------------------------
+    Total                                          19.517ns (3.844ns logic, 15.673ns route)
+                                                            (19.7% logic, 80.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point u_amber/u_execute/o_write_data_30 (SLICE_X16Y47.DX), 200017 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     0.374ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               u_amber/u_execute/status_bits_mode_0_3 (FF)
+  Destination:          u_amber/u_execute/o_write_data_30 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      19.689ns (Levels of Logic = 11)
+  Clock Path Skew:      0.098ns (0.550 - 0.452)
+  Source Clock:         brd_clk_BUFGP rising at 0.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: u_amber/u_execute/status_bits_mode_0_3 to u_amber/u_execute/o_write_data_30
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X29Y52.CQ      Tcko                  0.391   u_amber/u_execute/status_bits_mode_0_4
+                                                       u_amber/u_execute/status_bits_mode_0_3
+    SLICE_X27Y58.A5      net (fanout=18)       1.348   u_amber/u_execute/status_bits_mode_0_3
+    SLICE_X27Y58.A       Tilo                  0.259   u_amber/u_execute/u_register_bank/r14_irq<19>
+                                                       u_amber/u_execute/u_register_bank/mux40112
+    SLICE_X30Y55.A3      net (fanout=2)        1.940   u_amber/u_execute/u_register_bank/r14_out<17>
+    SLICE_X30Y55.BMUX    Topab                 0.370   u_amber/u_execute/rm<17>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_48
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_3_f7_7
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_2_f8_7
+    SLICE_X33Y37.B2      net (fanout=2)        2.477   u_amber/u_execute/rm<17>
+    SLICE_X33Y37.B       Tilo                  0.259   u_amber/u_execute/barrel_shift_in<17>
+                                                       u_amber/u_execute/barrel_shift_in<17>1
+    SLICE_X34Y34.D5      net (fanout=16)       0.670   u_amber/u_execute/barrel_shift_in<17>
+    SLICE_X34Y34.D       Tilo                  0.203   u_amber/u_execute/u_barrel_shift/Mmux__n0956_7
+                                                       u_amber/u_execute/u_barrel_shift/Mmux__n1004_6
+    SLICE_X37Y32.C1      net (fanout=9)        1.821   u_amber/u_execute/u_barrel_shift/Mmux__n0956_7
+    SLICE_X37Y32.C       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out30
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<3>281
+    SLICE_X45Y31.B4      net (fanout=3)        0.766   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out62
+    SLICE_X45Y31.B       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735563
+                                                       u_amber/u_execute/u_barrel_shift/Mmux_n0735568
+    SLICE_X45Y31.C4      net (fanout=4)        0.308   u_amber/u_execute/u_barrel_shift/Mmux_n0735567
+    SLICE_X45Y31.C       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735563
+                                                       u_amber/u_execute/u_alu/Mmux_a281
+    SLICE_X42Y36.BX      net (fanout=5)        1.036   u_amber/u_execute/u_alu/a<5>
+    SLICE_X42Y36.CMUX    Taxc                  0.310   u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<7>
+                                                       u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<7>
+    SLICE_X37Y38.D4      net (fanout=2)        0.691   u_amber/u_execute/u_alu/fadder_out<6>
+    SLICE_X37Y38.D       Tilo                  0.259   u_amber/u_execute/u_alu/o_out<6>
+                                                       u_amber/u_execute/u_alu/o_out<6>1
+    SLICE_X30Y41.A4      net (fanout=4)        1.002   u_amber/u_execute/u_alu/o_out<6>
+    SLICE_X30Y41.BMUX    Topab                 0.370   u_amber/u_execute/o_write_data<6>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_428
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_3_f7_27
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_2_f8_27
+    SLICE_X11Y51.A4      net (fanout=5)        3.213   u_amber/u_execute/rd<6>
+    SLICE_X11Y51.A       Tilo                  0.259   u_amber/u_fetch/Mmux_i_address[25]_i_cacheable_area[31]_Mux_4_o_91
+                                                       u_amber/u_execute/Mmux_write_data_nxt<30>11
+    SLICE_X16Y47.DX      net (fanout=2)        0.824   u_amber/u_execute/write_data_nxt<30>
+    SLICE_X16Y47.CLK     Tdick                 0.136   u_amber/u_execute/o_write_data<30>
+                                                       u_amber/u_execute/o_write_data_30
+    -------------------------------------------------  ---------------------------
+    Total                                     19.689ns (3.593ns logic, 16.096ns route)
+                                                       (18.2% logic, 81.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.451ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               u_amber/u_execute/status_bits_mode_0_3 (FF)
+  Destination:          u_amber/u_execute/o_write_data_30 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      19.612ns (Levels of Logic = 11)
+  Clock Path Skew:      0.098ns (0.550 - 0.452)
+  Source Clock:         brd_clk_BUFGP rising at 0.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: u_amber/u_execute/status_bits_mode_0_3 to u_amber/u_execute/o_write_data_30
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X29Y52.CQ      Tcko                  0.391   u_amber/u_execute/status_bits_mode_0_4
+                                                       u_amber/u_execute/status_bits_mode_0_3
+    SLICE_X27Y58.A5      net (fanout=18)       1.348   u_amber/u_execute/status_bits_mode_0_3
+    SLICE_X27Y58.A       Tilo                  0.259   u_amber/u_execute/u_register_bank/r14_irq<19>
+                                                       u_amber/u_execute/u_register_bank/mux40112
+    SLICE_X30Y55.A3      net (fanout=2)        1.940   u_amber/u_execute/u_register_bank/r14_out<17>
+    SLICE_X30Y55.BMUX    Topab                 0.370   u_amber/u_execute/rm<17>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_48
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_3_f7_7
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_2_f8_7
+    SLICE_X33Y37.B2      net (fanout=2)        2.477   u_amber/u_execute/rm<17>
+    SLICE_X33Y37.B       Tilo                  0.259   u_amber/u_execute/barrel_shift_in<17>
+                                                       u_amber/u_execute/barrel_shift_in<17>1
+    SLICE_X34Y34.D5      net (fanout=16)       0.670   u_amber/u_execute/barrel_shift_in<17>
+    SLICE_X34Y34.D       Tilo                  0.203   u_amber/u_execute/u_barrel_shift/Mmux__n0956_7
+                                                       u_amber/u_execute/u_barrel_shift/Mmux__n1004_6
+    SLICE_X37Y32.C1      net (fanout=9)        1.821   u_amber/u_execute/u_barrel_shift/Mmux__n0956_7
+    SLICE_X37Y32.C       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out30
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<3>281
+    SLICE_X45Y31.D5      net (fanout=3)        0.648   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out62
+    SLICE_X45Y31.D       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735563
+                                                       u_amber/u_execute/u_barrel_shift/Mmux_n0735564
+    SLICE_X45Y31.C5      net (fanout=4)        0.349   u_amber/u_execute/u_barrel_shift/Mmux_n0735563
+    SLICE_X45Y31.C       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735563
+                                                       u_amber/u_execute/u_alu/Mmux_a281
+    SLICE_X42Y36.BX      net (fanout=5)        1.036   u_amber/u_execute/u_alu/a<5>
+    SLICE_X42Y36.CMUX    Taxc                  0.310   u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<7>
+                                                       u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<7>
+    SLICE_X37Y38.D4      net (fanout=2)        0.691   u_amber/u_execute/u_alu/fadder_out<6>
+    SLICE_X37Y38.D       Tilo                  0.259   u_amber/u_execute/u_alu/o_out<6>
+                                                       u_amber/u_execute/u_alu/o_out<6>1
+    SLICE_X30Y41.A4      net (fanout=4)        1.002   u_amber/u_execute/u_alu/o_out<6>
+    SLICE_X30Y41.BMUX    Topab                 0.370   u_amber/u_execute/o_write_data<6>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_428
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_3_f7_27
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_2_f8_27
+    SLICE_X11Y51.A4      net (fanout=5)        3.213   u_amber/u_execute/rd<6>
+    SLICE_X11Y51.A       Tilo                  0.259   u_amber/u_fetch/Mmux_i_address[25]_i_cacheable_area[31]_Mux_4_o_91
+                                                       u_amber/u_execute/Mmux_write_data_nxt<30>11
+    SLICE_X16Y47.DX      net (fanout=2)        0.824   u_amber/u_execute/write_data_nxt<30>
+    SLICE_X16Y47.CLK     Tdick                 0.136   u_amber/u_execute/o_write_data<30>
+                                                       u_amber/u_execute/o_write_data_30
+    -------------------------------------------------  ---------------------------
+    Total                                     19.612ns (3.593ns logic, 16.019ns route)
+                                                       (18.3% logic, 81.7% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     0.673ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               u_amber/u_execute/status_bits_mode_1_3 (FF)
+  Destination:          u_amber/u_execute/o_write_data_30 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      19.377ns (Levels of Logic = 11)
+  Clock Path Skew:      0.085ns (0.550 - 0.465)
+  Source Clock:         brd_clk_BUFGP rising at 0.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: u_amber/u_execute/status_bits_mode_1_3 to u_amber/u_execute/o_write_data_30
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X27Y52.CQ      Tcko                  0.391   u_amber/u_execute/status_bits_mode_1_4
+                                                       u_amber/u_execute/status_bits_mode_1_3
+    SLICE_X31Y56.A2      net (fanout=18)       1.192   u_amber/u_execute/status_bits_mode_1_3
+    SLICE_X31Y56.A       Tilo                  0.259   u_amber/u_execute/u_register_bank/r12_firq<17>
+                                                       u_amber/u_execute/u_register_bank/mux42411
+    SLICE_X30Y55.B3      net (fanout=2)        1.793   u_amber/u_execute/u_register_bank/r8_out<17>
+    SLICE_X30Y55.BMUX    Topbb                 0.361   u_amber/u_execute/rm<17>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_516
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_3_f7_7
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rm_2_f8_7
+    SLICE_X33Y37.B2      net (fanout=2)        2.477   u_amber/u_execute/rm<17>
+    SLICE_X33Y37.B       Tilo                  0.259   u_amber/u_execute/barrel_shift_in<17>
+                                                       u_amber/u_execute/barrel_shift_in<17>1
+    SLICE_X34Y34.D5      net (fanout=16)       0.670   u_amber/u_execute/barrel_shift_in<17>
+    SLICE_X34Y34.D       Tilo                  0.203   u_amber/u_execute/u_barrel_shift/Mmux__n0956_7
+                                                       u_amber/u_execute/u_barrel_shift/Mmux__n1004_6
+    SLICE_X37Y32.C1      net (fanout=9)        1.821   u_amber/u_execute/u_barrel_shift/Mmux__n0956_7
+    SLICE_X37Y32.C       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out30
+                                                       u_amber/u_execute/u_barrel_shift/i_shift_amount<3>281
+    SLICE_X45Y31.B4      net (fanout=3)        0.766   u_amber/u_execute/u_barrel_shift/i_shift_amount<3>_mmx_out62
+    SLICE_X45Y31.B       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735563
+                                                       u_amber/u_execute/u_barrel_shift/Mmux_n0735568
+    SLICE_X45Y31.C4      net (fanout=4)        0.308   u_amber/u_execute/u_barrel_shift/Mmux_n0735567
+    SLICE_X45Y31.C       Tilo                  0.259   u_amber/u_execute/u_barrel_shift/Mmux_n0735563
+                                                       u_amber/u_execute/u_alu/Mmux_a281
+    SLICE_X42Y36.BX      net (fanout=5)        1.036   u_amber/u_execute/u_alu/a<5>
+    SLICE_X42Y36.CMUX    Taxc                  0.310   u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<7>
+                                                       u_amber/u_execute/u_alu/Madd_fadder_out_Madd_cy<7>
+    SLICE_X37Y38.D4      net (fanout=2)        0.691   u_amber/u_execute/u_alu/fadder_out<6>
+    SLICE_X37Y38.D       Tilo                  0.259   u_amber/u_execute/u_alu/o_out<6>
+                                                       u_amber/u_execute/u_alu/o_out<6>1
+    SLICE_X30Y41.A4      net (fanout=4)        1.002   u_amber/u_execute/u_alu/o_out<6>
+    SLICE_X30Y41.BMUX    Topab                 0.370   u_amber/u_execute/o_write_data<6>
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_428
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_3_f7_27
+                                                       u_amber/u_execute/u_register_bank/Mmux_o_rd_2_f8_27
+    SLICE_X11Y51.A4      net (fanout=5)        3.213   u_amber/u_execute/rd<6>
+    SLICE_X11Y51.A       Tilo                  0.259   u_amber/u_fetch/Mmux_i_address[25]_i_cacheable_area[31]_Mux_4_o_91
+                                                       u_amber/u_execute/Mmux_write_data_nxt<30>11
+    SLICE_X16Y47.DX      net (fanout=2)        0.824   u_amber/u_execute/write_data_nxt<30>
+    SLICE_X16Y47.CLK     Tdick                 0.136   u_amber/u_execute/o_write_data<30>
+                                                       u_amber/u_execute/o_write_data_30
+    -------------------------------------------------  ---------------------------
+    Total                                     19.377ns (3.584ns logic, 15.793ns route)
+                                                       (18.5% logic, 81.5% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: NET "brd_clk_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+--------------------------------------------------------------------------------
+
+Paths for end point u_amber/u_fetch/u_cache/wb_rdata_burst_26 (SLICE_X13Y30.CX), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.401ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               u_amber/u_fetch/u_cache/wb_rdata_burst_58 (FF)
+  Destination:          u_amber/u_fetch/u_cache/wb_rdata_burst_26 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.403ns (Levels of Logic = 0)
+  Clock Path Skew:      0.002ns (0.043 - 0.041)
+  Source Clock:         brd_clk_BUFGP rising at 20.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: u_amber/u_fetch/u_cache/wb_rdata_burst_58 to u_amber/u_fetch/u_cache/wb_rdata_burst_26
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X12Y30.CQ      Tcko                  0.200   u_amber/u_fetch/u_cache/wb_rdata_burst<59>
+                                                       u_amber/u_fetch/u_cache/wb_rdata_burst_58
+    SLICE_X13Y30.CX      net (fanout=4)        0.144   u_amber/u_fetch/u_cache/wb_rdata_burst<58>
+    SLICE_X13Y30.CLK     Tckdi       (-Th)    -0.059   u_amber/u_fetch/u_cache/wb_rdata_burst<27>
+                                                       u_amber/u_fetch/u_cache/wb_rdata_burst_26
+    -------------------------------------------------  ---------------------------
+    Total                                      0.403ns (0.259ns logic, 0.144ns route)
+                                                       (64.3% logic, 35.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point u_interrupt_controller/irq1_enable_reg_11 (SLICE_X0Y31.A6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.412ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               u_interrupt_controller/irq1_enable_reg_11 (FF)
+  Destination:          u_interrupt_controller/irq1_enable_reg_11 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.412ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         brd_clk_BUFGP rising at 20.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: u_interrupt_controller/irq1_enable_reg_11 to u_interrupt_controller/irq1_enable_reg_11
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X0Y31.AQ       Tcko                  0.200   u_interrupt_controller/irq1_enable_reg<14>
+                                                       u_interrupt_controller/irq1_enable_reg_11
+    SLICE_X0Y31.A6       net (fanout=2)        0.022   u_interrupt_controller/irq1_enable_reg<11>
+    SLICE_X0Y31.CLK      Tah         (-Th)    -0.190   u_interrupt_controller/irq1_enable_reg<14>
+                                                       u_interrupt_controller/i_wb_adr[15]_irq1_enable_reg[31]_select_42_OUT<11>1
+                                                       u_interrupt_controller/irq1_enable_reg_11
+    -------------------------------------------------  ---------------------------
+    Total                                      0.412ns (0.390ns logic, 0.022ns route)
+                                                       (94.7% logic, 5.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point u_interrupt_controller/irq1_enable_reg_10 (SLICE_X4Y20.D6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.412ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               u_interrupt_controller/irq1_enable_reg_10 (FF)
+  Destination:          u_interrupt_controller/irq1_enable_reg_10 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.412ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         brd_clk_BUFGP rising at 20.000ns
+  Destination Clock:    brd_clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: u_interrupt_controller/irq1_enable_reg_10 to u_interrupt_controller/irq1_enable_reg_10
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y20.DQ       Tcko                  0.200   u_interrupt_controller/irq1_enable_reg<10>
+                                                       u_interrupt_controller/irq1_enable_reg_10
+    SLICE_X4Y20.D6       net (fanout=2)        0.022   u_interrupt_controller/irq1_enable_reg<10>
+    SLICE_X4Y20.CLK      Tah         (-Th)    -0.190   u_interrupt_controller/irq1_enable_reg<10>
+                                                       u_interrupt_controller/i_wb_adr[15]_irq1_enable_reg[31]_select_42_OUT<10>1
+                                                       u_interrupt_controller/irq1_enable_reg_10
+    -------------------------------------------------  ---------------------------
+    Total                                      0.412ns (0.390ns logic, 0.022ns route)
+                                                       (94.7% logic, 5.3% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: NET "brd_clk_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 16.876ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 3.124ns (320.102MHz) (Trper_CLKA(Fmax))
+  Physical resource: u_amber/u_fetch/u_cache/rams[2].u_data/u_gen[1].u_ramb8bwer/CLKAWRCLK
+  Logical resource: u_amber/u_fetch/u_cache/rams[2].u_data/u_gen[1].u_ramb8bwer/CLKAWRCLK
+  Location pin: RAMB8_X1Y21.CLKAWRCLK
+  Clock network: brd_clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 16.876ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 3.124ns (320.102MHz) (Trper_CLKB(Fmax))
+  Physical resource: u_amber/u_fetch/u_cache/rams[2].u_data/u_gen[1].u_ramb8bwer/CLKBRDCLK
+  Logical resource: u_amber/u_fetch/u_cache/rams[2].u_data/u_gen[1].u_ramb8bwer/CLKBRDCLK
+  Location pin: RAMB8_X1Y21.CLKBRDCLK
+  Clock network: brd_clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 16.876ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 3.124ns (320.102MHz) (Trper_CLKA(Fmax))
+  Physical resource: boot_mem32.u_boot_mem/u_mem/u_sram0/CLKA
+  Logical resource: boot_mem32.u_boot_mem/u_mem/u_sram0/CLKA
+  Location pin: RAMB16_X0Y12.CLKA
+  Clock network: brd_clk_BUFGP
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock brd_clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+brd_clk        |   19.658|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 1010736574 paths, 0 nets, and 31180 connections
+
+Design statistics:
+   Minimum period:  19.658ns{1}   (Maximum frequency:  50.870MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Tue Feb 24 13:23:22 2015 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 503 MB
+
+
+

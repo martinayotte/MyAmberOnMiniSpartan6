@@ -1,0 +1,23 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Tue Feb 24 13:20:44 2015
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "brd_clk" LOCATE = SITE "K3" LEVEL 1;
+COMP "LED_BAR_O<0>" LOCATE = SITE "P11" LEVEL 1;
+COMP "LED_BAR_O<1>" LOCATE = SITE "N9" LEVEL 1;
+COMP "LED_BAR_O<2>" LOCATE = SITE "M9" LEVEL 1;
+COMP "LED_BAR_O<3>" LOCATE = SITE "P9" LEVEL 1;
+COMP "LED_BAR_O<4>" LOCATE = SITE "T8" LEVEL 1;
+COMP "LED_BAR_O<5>" LOCATE = SITE "N8" LEVEL 1;
+COMP "LED_BAR_O<6>" LOCATE = SITE "P8" LEVEL 1;
+COMP "LED_BAR_O<7>" LOCATE = SITE "P7" LEVEL 1;
+COMP "brd_rst" LOCATE = SITE "M11" LEVEL 1;
+COMP "i_uart0_tx" LOCATE = SITE "M7" LEVEL 1;
+COMP "o_uart0_rx" LOCATE = SITE "N6" LEVEL 1;
+COMP "GP_OUTPUT_O<0>" LOCATE = SITE "E2" LEVEL 1;
+COMP "GP_OUTPUT_O<1>" LOCATE = SITE "E1" LEVEL 1;
+COMP "GP_OUTPUT_O<2>" LOCATE = SITE "E4" LEVEL 1;
+NET "brd_clk_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+SCHEMATIC END;
+

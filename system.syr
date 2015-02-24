@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: system.prj
@@ -49,7 +49,7 @@ Ignore Synthesis Constraint File   : NO
 ---- Target Parameters
 Output File Name                   : "system"
 Output Format                      : NGC
-Target Device                      : xc6slx9-3-ftg256
+Target Device                      : xc6slx25-3-ftg256
 
 ---- Source Options
 Top Module Name                    : system
@@ -2297,12 +2297,10 @@ INFO:Xst:2261 - The FF/Latch <u_amber/u_execute/u_multiply/product_67> in Unit <
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block system, actual ratio is 128.
-Optimizing block <system> to meet ratio 100 (+ 5) of 1430 slices :
-WARNING:Xst:2254 - Area constraint could not be met for block <system>, final ratio is 123.
+Found area constraint ratio of 100 (+ 5) on block system, actual ratio is 48.
 FlipFlop u_amber/u_decode/o_condition_1 has been replicated 1 time(s)
-FlipFlop u_amber/u_decode/o_rds_sel_0 has been replicated 3 time(s)
-FlipFlop u_amber/u_decode/o_rds_sel_1 has been replicated 3 time(s)
+FlipFlop u_amber/u_decode/o_rds_sel_0 has been replicated 2 time(s)
+FlipFlop u_amber/u_decode/o_rds_sel_1 has been replicated 2 time(s)
 FlipFlop u_amber/u_decode/o_rm_sel_0 has been replicated 6 time(s)
 FlipFlop u_amber/u_decode/o_rm_sel_1 has been replicated 5 time(s)
 FlipFlop u_amber/u_execute/status_bits_mode_0 has been replicated 12 time(s)
@@ -2312,13 +2310,8 @@ FlipFlop u_amber/u_execute/status_bits_mode_rds_oh_1 has been replicated 2 time(
 FlipFlop u_amber/u_execute/status_bits_mode_rds_oh_2 has been replicated 3 time(s)
 FlipFlop u_amber/u_execute/status_bits_mode_rds_oh_3 has been replicated 2 time(s)
 FlipFlop u_amber/u_fetch/u_wishbone/o_wb_adr_2 has been replicated 1 time(s)
-FlipFlop u_amber/u_fetch/u_wishbone/o_wb_adr_27 has been replicated 1 time(s)
 FlipFlop u_amber/u_fetch/u_wishbone/o_wb_adr_3 has been replicated 1 time(s)
 FlipFlop u_amber/u_fetch/u_wishbone/o_wb_adr_4 has been replicated 1 time(s)
-FlipFlop u_amber/u_fetch/u_wishbone/o_wb_adr_5 has been replicated 1 time(s)
-FlipFlop u_amber/u_fetch/u_wishbone/o_wb_adr_6 has been replicated 1 time(s)
-FlipFlop u_amber/u_fetch/u_wishbone/o_wb_adr_8 has been replicated 1 time(s)
-FlipFlop u_amber/u_fetch/u_wishbone/o_wb_adr_9 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -2331,8 +2324,8 @@ Unit <system> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 2628
- Flip-Flops                                            : 2628
+# Registers                                            : 2621
+ Flip-Flops                                            : 2621
 # Shift Registers                                      : 2
  2-bit shift register                                  : 2
 
@@ -2357,25 +2350,25 @@ Top Level Output File Name         : system.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 7977
+# BELS                             : 6880
 #      GND                         : 1
-#      INV                         : 124
+#      INV                         : 119
 #      LUT1                        : 108
-#      LUT2                        : 137
-#      LUT3                        : 1336
-#      LUT4                        : 533
-#      LUT5                        : 1671
-#      LUT6                        : 2796
+#      LUT2                        : 148
+#      LUT3                        : 881
+#      LUT4                        : 566
+#      LUT5                        : 1039
+#      LUT6                        : 2747
 #      MUXCY                       : 415
-#      MUXF7                       : 355
-#      MUXF8                       : 128
+#      MUXF7                       : 356
+#      MUXF8                       : 127
 #      VCC                         : 1
 #      XORCY                       : 372
-# FlipFlops/Latches                : 2630
-#      FD                          : 153
-#      FDE                         : 2310
-#      FDR                         : 23
-#      FDRE                        : 70
+# FlipFlops/Latches                : 2623
+#      FD                          : 104
+#      FDE                         : 2308
+#      FDR                         : 32
+#      FDRE                        : 105
 #      FDSE                        : 74
 # RAMS                             : 24
 #      RAMB16BWER                  : 8
@@ -2391,33 +2384,31 @@ Primitive and Black Box Usage:
 Device utilization summary:
 ---------------------------
 
-Selected Device : 6slx9ftg256-3 
+Selected Device : 6slx25ftg256-3 
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            2630  out of  11440    22%  
- Number of Slice LUTs:                 6707  out of   5720   117% (*) 
-    Number used as Logic:              6705  out of   5720   117% (*) 
-    Number used as Memory:                2  out of   1440     0%  
+ Number of Slice Registers:            2623  out of  30064     8%  
+ Number of Slice LUTs:                 5610  out of  15032    37%  
+    Number used as Logic:              5608  out of  15032    37%  
+    Number used as Memory:                2  out of   3664     0%  
        Number used as SRL:                2
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   7260
-   Number with an unused Flip Flop:    4630  out of   7260    63%  
-   Number with an unused LUT:           553  out of   7260     7%  
-   Number of fully used LUT-FF pairs:  2077  out of   7260    28%  
-   Number of unique control sets:       119
+ Number of LUT Flip Flop pairs used:   6993
+   Number with an unused Flip Flop:    4370  out of   6993    62%  
+   Number with an unused LUT:          1383  out of   6993    19%  
+   Number of fully used LUT-FF pairs:  1240  out of   6993    17%  
+   Number of unique control sets:       149
 
 IO Utilization: 
  Number of IOs:                          17
  Number of bonded IOBs:                  16  out of    186     8%  
 
 Specific Feature Utilization:
- Number of Block RAM/FIFO:               16  out of     32    50%  
+ Number of Block RAM/FIFO:               16  out of     52    30%  
     Number using Block RAM only:         16
  Number of BUFG/BUFGCTRLs:                1  out of     16     6%  
-
-WARNING:Xst:1336 -  (*) More than 100% of Device resources are used
 
 ---------------------------
 Partition Resource Summary:
@@ -2440,7 +2431,7 @@ Clock Information:
 -----------------------------------+------------------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)                    | Load  |
 -----------------------------------+------------------------------------------+-------+
-brd_clk                            | BUFGP                                    | 2656  |
+brd_clk                            | BUFGP                                    | 2649  |
 u_amber/decode_fault_status<0>     | NONE(boot_mem32.u_boot_mem/u_mem/u_sram3)| 4     |
 -----------------------------------+------------------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
@@ -2453,9 +2444,9 @@ Timing Summary:
 ---------------
 Speed Grade: -3
 
-   Minimum period: 16.010ns (Maximum Frequency: 62.462MHz)
+   Minimum period: 15.345ns (Maximum Frequency: 65.167MHz)
    Minimum input arrival time before clock: 3.276ns
-   Maximum output required time after clock: 6.784ns
+   Maximum output required time after clock: 6.791ns
    Maximum combinational path delay: No path found
 
 Timing Details:
@@ -2464,42 +2455,46 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'brd_clk'
-  Clock period: 16.010ns (frequency: 62.462MHz)
-  Total number of paths / destination ports: 1031446458 / 6341
+  Clock period: 15.345ns (frequency: 65.167MHz)
+  Total number of paths / destination ports: 1010736646 / 6411
 -------------------------------------------------------------------------
-Delay:               16.010ns (Levels of Logic = 18)
+Delay:               15.345ns (Levels of Logic = 22)
   Source:            u_amber/u_execute/u_register_bank/r13_svc_2 (FF)
-  Destination:       u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[0].u_ramb8bwer (RAM)
+  Destination:       u_amber/u_execute/o_adex (FF)
   Source Clock:      brd_clk rising
   Destination Clock: brd_clk rising
 
-  Data Path: u_amber/u_execute/u_register_bank/r13_svc_2 to u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[0].u_ramb8bwer
+  Data Path: u_amber/u_execute/u_register_bank/r13_svc_2 to u_amber/u_execute/o_adex
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              3   0.447   0.995  u_amber/u_execute/u_register_bank/r13_svc_2 (u_amber/u_execute/u_register_bank/r13_svc_2)
+     FDE:C->Q              2   0.447   0.961  u_amber/u_execute/u_register_bank/r13_svc_2 (u_amber/u_execute/u_register_bank/r13_svc_2)
      LUT5:I0->O            1   0.203   0.580  u_amber/u_execute/u_register_bank/mux37411 (u_amber/u_execute/u_register_bank/mux3741)
      LUT3:I2->O            2   0.205   0.721  u_amber/u_execute/u_register_bank/mux37412 (u_amber/u_execute/u_register_bank/r13_rds<2>)
      LUT6:I4->O            1   0.203   0.000  u_amber/u_execute/u_register_bank/Mmux_o_rs_422 (u_amber/u_execute/u_register_bank/Mmux_o_rs_422)
      MUXF7:I1->O           1   0.140   0.000  u_amber/u_execute/u_register_bank/Mmux_o_rs_3_f7_21 (u_amber/u_execute/u_register_bank/Mmux_o_rs_3_f722)
-     MUXF8:I1->O          50   0.152   1.548  u_amber/u_execute/u_register_bank/Mmux_o_rs_2_f8_21 (u_amber/u_execute/rs<2>)
-     LUT4:I3->O            8   0.205   0.803  u_amber/u_execute/Mmux_shift_amount31_1 (u_amber/u_execute/Mmux_shift_amount31)
-     LUT6:I5->O           10   0.205   0.857  u_amber/u_execute/u_barrel_shift/i_shift_amount[7]_GND_11_o_equal_135_o<7>1_1 (u_amber/u_execute/u_barrel_shift/i_shift_amount[7]_GND_11_o_equal_135_o<7>1)
-     LUT4:I3->O            8   0.205   0.803  u_amber/u_execute/u_barrel_shift/Mmux_n07352211 (u_amber/u_execute/u_barrel_shift/Mmux_n0735221)
-     LUT6:I5->O            4   0.205   0.684  u_amber/u_execute/u_barrel_shift/Mmux_n0735604 (u_amber/u_execute/u_barrel_shift/Mmux_n0735604)
-     LUT6:I5->O            1   0.205   0.684  u_amber/u_execute/u_alu/Mmux_b_not301_SW0 (N1365)
-     LUT6:I4->O           11   0.203   0.883  u_amber/u_execute/u_alu/o_out<10>31 (u_amber/u_execute/u_alu/o_out<10>3)
-     LUT6:I5->O            1   0.205   0.808  u_amber/u_execute/u_alu/o_out<9>4_SW1 (N1628)
-     LUT6:I3->O            1   0.205   0.000  u_amber/u_execute/Mmux__n04167_A323 (u_amber/u_execute/Mmux__n04167_rs_A<9>)
-     MUXCY:S->O            1   0.172   0.000  u_amber/u_execute/Mmux__n04167_rs_cy<9> (u_amber/u_execute/Mmux__n04167_rs_cy<9>)
-     MUXCY:CI->O           1   0.019   0.000  u_amber/u_execute/Mmux__n04167_rs_cy<10> (u_amber/u_execute/Mmux__n04167_rs_cy<10>)
-     XORCY:CI->O           2   0.180   0.617  u_amber/u_execute/Mmux__n04167_rs_xor<11> (u_amber/u_execute/Mmux__n04167_split<11>)
-     LUT5:I4->O            2   0.205   0.617  u_amber/u_fetch/u_cache/source_sel<1>711 (u_amber/u_fetch/u_cache/source_sel<1>71)
-     LUT6:I5->O           32   0.205   1.291  u_amber/u_fetch/u_cache/Mmux_data_address81 (u_amber/u_fetch/u_cache/data_address<7>)
-     RAMB8BWER:ADDRAWRADDR12        0.350          u_amber/u_fetch/u_cache/rams[0].u_data/u_gen[0].u_ramb8bwer
+     MUXF8:I1->O          51   0.152   1.555  u_amber/u_execute/u_register_bank/Mmux_o_rs_2_f8_21 (u_amber/u_execute/rs<2>)
+     LUT4:I3->O            3   0.205   0.651  u_amber/u_execute/Mmux_shift_amount31_1 (u_amber/u_execute/Mmux_shift_amount31)
+     LUT6:I5->O            3   0.205   0.651  u_amber/u_execute/u_barrel_shift/i_shift_amount[7]_GND_11_o_equal_135_o<7>1_1 (u_amber/u_execute/u_barrel_shift/i_shift_amount[7]_GND_11_o_equal_135_o<7>1)
+     LUT4:I3->O           11   0.205   0.987  u_amber/u_execute/u_barrel_shift/Mmux_n07352211 (u_amber/u_execute/u_barrel_shift/Mmux_n0735221)
+     LUT6:I4->O            3   0.203   0.755  u_amber/u_execute/u_barrel_shift/Mmux_n0735604 (u_amber/u_execute/u_barrel_shift/Mmux_n0735604)
+     LUT6:I4->O            4   0.203   0.684  u_amber/u_execute/u_barrel_shift/Mmux_n0735608 (u_amber/u_execute/barrel_shift_out<7>)
+     LUT6:I5->O            5   0.205   0.819  u_amber/u_execute/u_alu/o_out<16>21_SW2 (N1224)
+     LUT6:I4->O            6   0.203   0.745  u_amber/u_execute/u_alu/o_out<16>21_1 (u_amber/u_execute/u_alu/o_out<16>21)
+     LUT5:I4->O            1   0.205   0.684  u_amber/u_execute/u_alu/o_out<23>1_SW41 (N1343)
+     LUT6:I4->O            1   0.203   0.000  u_amber/u_execute/Mmux__n04167_A163 (u_amber/u_execute/Mmux__n04167_rs_A<23>)
+     MUXCY:S->O            1   0.172   0.000  u_amber/u_execute/Mmux__n04167_rs_cy<23> (u_amber/u_execute/Mmux__n04167_rs_cy<23>)
+     MUXCY:CI->O           1   0.019   0.000  u_amber/u_execute/Mmux__n04167_rs_cy<24> (u_amber/u_execute/Mmux__n04167_rs_cy<24>)
+     MUXCY:CI->O           1   0.019   0.000  u_amber/u_execute/Mmux__n04167_rs_cy<25> (u_amber/u_execute/Mmux__n04167_rs_cy<25>)
+     MUXCY:CI->O           1   0.019   0.000  u_amber/u_execute/Mmux__n04167_rs_cy<26> (u_amber/u_execute/Mmux__n04167_rs_cy<26>)
+     MUXCY:CI->O           1   0.019   0.000  u_amber/u_execute/Mmux__n04167_rs_cy<27> (u_amber/u_execute/Mmux__n04167_rs_cy<27>)
+     XORCY:CI->O           1   0.180   0.580  u_amber/u_execute/Mmux__n04167_rs_xor<28> (u_amber/u_execute/Mmux__n04167_split<28>)
+     LUT5:I4->O            2   0.205   0.845  u_amber/u_execute/Mmux_o_address_nxt211 (u_amber/execute_address_nxt<28>)
+     LUT6:I3->O            1   0.205   0.000  u_amber/u_execute/adex_nxt (u_amber/u_execute/adex_nxt)
+     FDE:D                     0.102          u_amber/u_execute/o_adex
     ----------------------------------------
-    Total                     16.010ns (4.119ns logic, 11.891ns route)
-                                       (25.7% logic, 74.3% route)
+    Total                     15.345ns (4.127ns logic, 11.218ns route)
+                                       (26.9% logic, 73.1% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'brd_clk'
@@ -2525,7 +2520,7 @@ Offset:              3.276ns (Levels of Logic = 2)
 Timing constraint: Default OFFSET OUT AFTER for Clock 'brd_clk'
   Total number of paths / destination ports: 43 / 13
 -------------------------------------------------------------------------
-Offset:              6.784ns (Levels of Logic = 3)
+Offset:              6.791ns (Levels of Logic = 3)
   Source:            u_amber/u_fetch/u_wishbone/o_wb_adr_9 (FF)
   Destination:       GP_OUTPUT_O<1> (PAD)
   Source Clock:      brd_clk rising
@@ -2534,12 +2529,12 @@ Offset:              6.784ns (Levels of Logic = 3)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q             59   0.447   1.835  u_amber/u_fetch/u_wishbone/o_wb_adr_9 (u_amber/u_fetch/u_wishbone/o_wb_adr_9)
+     FDE:C->Q             60   0.447   1.842  u_amber/u_fetch/u_wishbone/o_wb_adr_9 (u_amber/u_fetch/u_wishbone/o_wb_adr_9)
      LUT6:I3->O            1   0.205   0.944  GP_OUTPUT_O<1><15>2 (GP_OUTPUT_O<1><15>1)
      LUT6:I0->O            1   0.203   0.579  GP_OUTPUT_O<1><15>3 (GP_OUTPUT_O_1_OBUF)
      OBUF:I->O                 2.571          GP_OUTPUT_O_1_OBUF (GP_OUTPUT_O<1>)
     ----------------------------------------
-    Total                      6.784ns (3.426ns logic, 3.358ns route)
+    Total                      6.791ns (3.426ns logic, 3.365ns route)
                                        (50.5% logic, 49.5% route)
 
 =========================================================================
@@ -2552,21 +2547,21 @@ Clock to Setup on destination clock brd_clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-brd_clk        |   16.010|         |         |         |
+brd_clk        |   15.345|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 54.00 secs
-Total CPU time to Xst completion: 53.19 secs
+Total REAL time to Xst completion: 56.00 secs
+Total CPU time to Xst completion: 54.34 secs
  
 --> 
 
 
-Total memory usage is 454092 kilobytes
+Total memory usage is 454152 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  340 (   0 filtered)
+Number of warnings :  338 (   0 filtered)
 Number of infos    :   50 (   0 filtered)
 

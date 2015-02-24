@@ -29,16 +29,10 @@
 <msg type="info" file="Place" num="834" delta="old" >Only a subset of IOs are locked. Out of <arg fmt="%d" index="1">16</arg> IOs, <arg fmt="%d" index="2">15</arg> are locked and <arg fmt="%d" index="3">1</arg> are not locked. <arg fmt="%s" index="4">If you would like to print the names of these IOs, please set the environment variable XIL_PAR_DESIGN_CHECK_VERBOSE to 1.</arg> 
 </msg>
 
-<msg type="error" file="Place" num="375" delta="old" >The design does not fit in device.
-<arg fmt="%s" index="1"> Total LUT Utilization      : 12154 out of 11440
- LUTs used as Logic         : 12150
- LUTs used as Memory        : 4
- FF Utilization             : 2630 out of 11440
-
-</arg>
+<msg type="info" file="Pack" num="1650" delta="new" >Map created a placed design.
 </msg>
 
-<msg type="error" file="Pack" num="1654" delta="old" >The timing-driven placement phase encountered an error.
+<msg type="warning" file="PhysDesignRules" num="2410" delta="new" >This design is using one or more 9K Block RAMs (RAMB8BWER).  9K Block RAM initialization data, both user defined and default, may be incorrect and should not be used.  For more information, please reference Xilinx Answer Record 39999.
 </msg>
 
 </messages>
