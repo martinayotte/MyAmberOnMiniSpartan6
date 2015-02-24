@@ -4,10 +4,10 @@ run
 -ifn system.prj
 -ofn system
 -ofmt NGC
--p xc6slx25-3-ftg256
+-p xc6slx9-3-ftg256
 -top system
 -opt_mode Speed
--opt_level 1
+-opt_level 2
 -power NO
 -iuc NO
 -keep_hierarchy No
@@ -23,7 +23,7 @@ run
 -slice_utilization_ratio 100
 -bram_utilization_ratio 100
 -dsp_utilization_ratio 100
--lc Auto
+-lc Area
 -reduce_control_sets Auto
 -fsm_extract YES -fsm_encoding Auto
 -safe_implementation No

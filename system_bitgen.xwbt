@@ -1,8 +1,8 @@
 INTSTYLE=ise
-INFILE=/home/martin/minispartan6/MyAmbder/system.ncd
-OUTFILE=/home/martin/minispartan6/MyAmbder/system.bit
+INFILE=/home/martin/git-work/MyAmberOnMiniSpartan6/system.ncd
+OUTFILE=/home/martin/git-work/MyAmberOnMiniSpartan6/system.bit
 FAMILY=Spartan6
 PART=xc6slx9-3ftg256
-WORKINGDIR=/home/martin/minispartan6/MyAmbder
+WORKINGDIR=/home/martin/git-work/MyAmberOnMiniSpartan6
 LICENSE=WebPack
 USER_INFO=210742716_0_0_270

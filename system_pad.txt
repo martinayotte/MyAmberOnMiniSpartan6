@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Tue Feb 24 13:22:45 2015
+Tue Feb 24 15:02:35 2015
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -11,7 +11,7 @@ INFO: The IO information is provided in three file formats as part of the Place 
 
 INPUT FILE:       system_map.ncd
 OUTPUT FILE:      system_pad.txt
-PART TYPE:        xc6slx25
+PART TYPE:        xc6slx9
 SPEED GRADE:      -3
 PACKAGE:          ftg256
 
@@ -66,7 +66,7 @@ Pinout by Pin Number:
 |C12       |              |         |TDI                          |         |           |              |          |         |           |         |         |          |           |                |
 |C13       |              |IOBM     |IO_L63P_SCP7_0               |UNUSED   |           |0             |          |         |           |         |         |          |           |                |
 |C14       |              |         |TCK                          |         |           |              |          |         |           |         |         |          |           |                |
-|C15       |o_uart0_cts   |IOB      |IO_L33P_A15_M1A10_1          |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |           |         |         |UNLOCATED |NO         |NONE            |
+|C15       |              |IOBM     |IO_L33P_A15_M1A10_1          |UNUSED   |           |1             |          |         |           |         |         |          |           |                |
 |C16       |              |IOBS     |IO_L33N_A14_M1A4_1           |UNUSED   |           |1             |          |         |           |         |         |          |           |                |
 |D1        |              |IOBS     |IO_L49N_M3A2_3               |UNUSED   |           |3             |          |         |           |         |         |          |           |                |
 |D2        |              |         |VCCO_3                       |         |           |3             |          |         |           |         |3.30     |          |           |                |
@@ -98,7 +98,7 @@ Pinout by Pin Number:
 |E12       |              |IOBS     |IO_L1N_A24_VREF_1            |UNUSED   |           |1             |          |         |           |         |         |          |           |                |
 |E13       |              |IOBM     |IO_L1P_A25_1                 |UNUSED   |           |1             |          |         |           |         |         |          |           |                |
 |E14       |              |         |TDO                          |         |           |              |          |         |           |         |         |          |           |                |
-|E15       |              |IOBM     |IO_L34P_A13_M1WE_1           |UNUSED   |           |1             |          |         |           |         |         |          |           |                |
+|E15       |o_uart0_cts   |IOB      |IO_L34P_A13_M1WE_1           |OUTPUT   |LVCMOS25*  |1             |12        |SLOW     |           |         |         |UNLOCATED |NO         |NONE            |
 |E16       |              |IOBS     |IO_L34N_A12_M1BA2_1          |UNUSED   |           |1             |          |         |           |         |         |          |           |                |
 |F1        |              |IOBS     |IO_L41N_GCLK26_M3DQ5_3       |UNUSED   |           |3             |          |         |           |         |         |          |           |                |
 |F2        |              |IOBM     |IO_L41P_GCLK27_M3DQ4_3       |UNUSED   |           |3             |          |         |           |         |         |          |           |                |
