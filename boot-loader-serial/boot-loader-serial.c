@@ -47,7 +47,6 @@
 #include "fpga-version.h"
 
 
-
 int main ( void ) {
     int c, esc = 0;
     char buf  [20]; /* current line */
@@ -55,30 +54,20 @@ int main ( void ) {
     int i = 0;
     int li = 0;
     int j;
-    int l = 0;
 
     /* Enable the UART FIFO */
     *(unsigned int *) ADR_AMBER_UART0_LCRH = 0x10;
     
-/*
-    int k = 400000;
-    while (k-- > 0) {
-        for (l = 0; l < 10000; l++) {
-            asm volatile ("NOP");
-        }
-    }
-*/    
-
-    printf("\n%c>>> Amber Boot Loader v%s <<<\n\n\n", 0xc, AMBER_FPGA_VERSION );  /* 0xc == new page */
-//    printf("\r\n\r\nAmber Boot Loader \r\n\r\n");
+    printf("%cAmber Boot Loader v%s\n", 0xc, AMBER_FPGA_VERSION );  /* 0xc == new page */
     
+
     /* When ADR_AMBER_TEST_SIM_CTRL is non-zero, its a Verilog simulation.
        The  ADR_AMBER_TEST_SIM_CTRL register is always 0 in the real fpga
        The register is in vlog/system/test_module.v
     */   
-//    if ( *(unsigned int *) ADR_AMBER_TEST_SIM_CTRL ) {
-//        load_run(*(unsigned int *) ADR_AMBER_TEST_SIM_CTRL, 0);
-//        }
+    if ( *(unsigned int *) ADR_AMBER_TEST_SIM_CTRL ) {
+        load_run(*(unsigned int *) ADR_AMBER_TEST_SIM_CTRL, 0);
+        }
         
 
     /* Print the instructions */
@@ -187,10 +176,9 @@ void parse ( char * buf )
             case 'd': /* Dump block of memory */
                 /* Dump memory contents <start address> <number of bytes in hex> */    
                 if (get_address_data ( buf, &address, &bytes )) {
-                    dump_mem(address, bytes);
-//                    for (i=address;i<address+bytes;i+=4) {
-//                        printm (i);
-//                        }
+                    for (i=address;i<address+bytes;i+=4) {
+                        printm (i);
+                        }
                     }
                 break;
 
@@ -258,7 +246,7 @@ void parse ( char * buf )
 void load_run( int type, unsigned int address )
 {
     int file_size;        
-    char * message = "Send file w/ 1K Xmodem protocol now...";
+    char * message = "Send file w/ 1K Xmodem protocol from terminal emulator now...";
     
     switch (type) {
         
@@ -330,22 +318,6 @@ void load_run( int type, unsigned int address )
             _testpass();
             break;
         }
-}
-
-void dump_mem(unsigned int *ptr, int count)
-{
-    int i;
-    int j = 0;
-    count = count >> 2;
-    printf("%08X:", ptr);
-    for (i = 0; i < count; i++) {
-        printf("%08X ", *(ptr + i));
-        if (j++ >= 7 && i < (count - 1)) {
-            printf ("\n%08X:", (ptr + i + 1));
-            j = 0;
-        }
-    }
-    printf("\n\n");
 }
 
 

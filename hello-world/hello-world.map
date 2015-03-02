@@ -1,0 +1,117 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000008000                . = 0x8000
+
+.text           0x0000000000008000      0xdf8
+ start*(.text)
+ .text          0x0000000000008000       0x28 start.o
+ *(.text)
+ .text          0x0000000000008028        0x0 hello-world.o
+ .text          0x0000000000008028      0x45c ../mini-libc/printf.o
+                0x0000000000008028                outbyte
+                0x0000000000008050                prints
+                0x0000000000008124                printi
+                0x0000000000008260                print
+                0x0000000000008424                sprintf
+                0x0000000000008454                printf
+ .text          0x0000000000008484      0x480 ../mini-libc/libc_asm.o
+                0x0000000000008484                _testfail
+                0x0000000000008490                _testpass
+                0x00000000000084a0                _outbyte
+                0x00000000000084c0                _inbyte
+                0x00000000000084f0                __aeabi_idiv
+                0x00000000000084f0                _div
+                0x0000000000008574                strcpy
+                0x0000000000008678                strcmp
+                0x0000000000008870                init_malloc
+                0x000000000000887c                malloc
+                0x0000000000008890                strncpy
+                0x00000000000088b4                strncmp
+ .text          0x0000000000008904      0x4f4 ../mini-libc/memcpy.o
+                0x0000000000008904                memcpy
+
+.glue_7         0x0000000000008df8        0x0
+ .glue_7        0x0000000000000000        0x0 linker stubs
+
+.glue_7t        0x0000000000008df8        0x0
+ .glue_7t       0x0000000000000000        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000008df8        0x0
+ .vfp11_veneer  0x0000000000000000        0x0 linker stubs
+
+.v4_bx          0x0000000000008df8        0x0
+ .v4_bx         0x0000000000000000        0x0 linker stubs
+
+.text.startup   0x0000000000008df8       0x24
+ .text.startup  0x0000000000008df8       0x24 hello-world.o
+                0x0000000000008df8                main
+
+.iplt           0x0000000000008e1c        0x0
+ .iplt          0x0000000000000000        0x0 hello-world.o
+
+.data           0x0000000000008e1c        0x0
+ *(.data)
+ .data          0x0000000000008e1c        0x0 hello-world.o
+ .data          0x0000000000008e1c        0x0 start.o
+ .data          0x0000000000008e1c        0x0 ../mini-libc/printf.o
+ .data          0x0000000000008e1c        0x0 ../mini-libc/libc_asm.o
+ .data          0x0000000000008e1c        0x0 ../mini-libc/memcpy.o
+
+.igot.plt       0x0000000000008e1c        0x0
+ .igot.plt      0x0000000000000000        0x0 hello-world.o
+
+.rodata
+ *(.rodata)
+
+.rodata.str1.4  0x0000000000008e1c       0x24
+ .rodata.str1.4
+                0x0000000000008e1c       0x24 hello-world.o
+
+.rodata.str1.1  0x0000000000008e40        0x7
+ .rodata.str1.1
+                0x0000000000008e40        0x7 ../mini-libc/printf.o
+
+.rel.dyn        0x0000000000008e48        0x0
+ .rel.iplt      0x0000000000000000        0x0 hello-world.o
+
+.bss            0x0000000000008e47        0x4
+ *(.bss)
+ .bss           0x0000000000008e47        0x0 hello-world.o
+ .bss           0x0000000000008e47        0x4 start.o
+ .bss           0x0000000000008e4b        0x0 ../mini-libc/printf.o
+ .bss           0x0000000000008e4b        0x0 ../mini-libc/libc_asm.o
+ .bss           0x0000000000008e4b        0x0 ../mini-libc/memcpy.o
+
+.stack          0x0000000000008e4b        0x0
+                0x0000000000008e4b                __stack = .
+LOAD hello-world.o
+LOAD start.o
+LOAD ../mini-libc/printf.o
+LOAD ../mini-libc/libc_asm.o
+LOAD ../mini-libc/memcpy.o
+OUTPUT(hello-world.elf elf32-littlearm)
+
+.comment        0x0000000000000000       0x1f
+ .comment       0x0000000000000000       0x1f hello-world.o
+                                         0x20 (size before relaxing)
+ .comment       0x0000000000000000       0x20 ../mini-libc/printf.o
+ .comment       0x0000000000000000       0x20 ../mini-libc/memcpy.o
+
+.ARM.attributes
+                0x0000000000000000       0x26
+ .ARM.attributes
+                0x0000000000000000       0x28 hello-world.o
+ .ARM.attributes
+                0x0000000000000028       0x14 start.o
+ .ARM.attributes
+                0x000000000000003c       0x28 ../mini-libc/printf.o
+ .ARM.attributes
+                0x0000000000000064       0x14 ../mini-libc/libc_asm.o
+ .ARM.attributes
+                0x0000000000000078       0x28 ../mini-libc/memcpy.o

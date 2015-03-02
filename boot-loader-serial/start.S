@@ -104,10 +104,10 @@ startup:
         @ init SP
         ldr     sp, AdrStack
 
-//        @ Set 32MB memory mode
-//        ldr     r0, AdrMemCtrl
-//        mov     r1, #1
-//        str     r1, [r0]
+        @ Set 32MB memory mode
+        ldr     r0, AdrMemCtrl
+        mov     r1, #1
+        str     r1, [r0]
         
         .extern main
         bl      main
@@ -183,8 +183,7 @@ _core_status:
         
 
 /* stack at top of ddr3 memory space */
-//AdrStack:                   .word 0x02000000
-AdrStack:                   .word 0x00001f60
+AdrStack:                   .word 0x02000000
 AdrMemCtrl:                 .word ADR_AMBER_TEST_MEM_CTRL
 
 /* core status messages */

@@ -52,6 +52,6 @@ USE_MINI_LIBC = 1
 MIN_SIZE      = 1
 
 all : debug
-	./tools/check_mem_size.sh $(MEM) "@000020"
+	../tools/check_mem_size.sh $(MEM) "@000020"
         
-include ./include/common.mk
+include ../include/common.mk
