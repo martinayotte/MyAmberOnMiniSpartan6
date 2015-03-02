@@ -2,10 +2,13 @@ work/
 iseconfig/
 tmp/
 _xmsgs/
+cache/
 doc/
+wt/
 example_design/
 implement/
 simulation/
+*runs/
 *.log
 *.tcl
 *.txt
@@ -19,7 +22,6 @@ simulation/
 *.veo
 *.vho
 *.html
-*.xml
 *.xsl
 *.svf
 *.xsvf
@@ -27,3 +29,5 @@ simulation/
 *.cfi
 *.prm
 *.o
+#*.xml
+/webtalk_impact.xml
