@@ -26,3 +26,4 @@ simulation/
 *.xwbt
 *.cfi
 *.prm
+*.o

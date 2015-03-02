@@ -43,7 +43,7 @@ LIBC_OBJ         = ./mini-libc/printf.o ./mini-libc/libc_asm.o ./mini-libc/memcp
 DEP             += ./include/amber_registers.h ./mini-libc/stdio.h
 TOOLSPATH        = ./tools
 #AMBER_CROSSTOOL ?= amber-crosstool-not-defined
-AMBER_CROSSTOOL = /usr/local/arm/gcc-arm-none-eabi-4_8-2014q3/bin/arm-none-eabi
+AMBER_CROSSTOOL = arm-none-eabi
 
   AS    = $(AMBER_CROSSTOOL)-as
   CC    = $(AMBER_CROSSTOOL)-gcc

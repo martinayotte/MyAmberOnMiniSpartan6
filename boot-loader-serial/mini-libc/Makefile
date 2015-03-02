@@ -41,7 +41,7 @@
 # Compile mini-libc
 
 #AMBER_CROSSTOOL ?= amber-crosstool-not-defined
-AMBER_CROSSTOOL = /usr/local/arm/gcc-arm-none-eabi-4_8-2014q3/bin/arm-none-eabi
+AMBER_CROSSTOOL = arm-none-eabi
 
  SRC = snprintf.c printf.c memcpy.c libc_asm.S
 TGT  = printf

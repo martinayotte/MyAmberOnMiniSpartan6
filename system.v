@@ -54,21 +54,19 @@ output                      o_uart0_cts,
 input                       i_uart0_tx,
 
 output  [7:0]               LED_BAR_O,
-output  [2:0]					 GP_OUTPUT_O
+output  [2:0]			    GP_OUTPUT_O,
 
-/*
 // SDRAM pins
 output [12:0]     		    SDRAM_ADDR,
-output [1:0]		          SDRAM_BA,
-output							 SDRAM_CAS,
-output							 SDRAM_CKE,
-output							 SDRAM_CLK,
-output							 SDRAM_CS,
-inout [15:0]					 SDRAM_DATA,
-output [1:0]					 SDRAM_DQM,
-output		  					 SDRAM_RAS,
-output		  					 SDRAM_WE
-*/
+output [1:0]                SDRAM_BA,
+output			            SDRAM_CAS,
+output					    SDRAM_CKE,
+output				      	SDRAM_CLK,
+output						SDRAM_CS,
+inout [15:0]				SDRAM_DATA,
+output [1:0]				SDRAM_DQM,
+output		  				SDRAM_RAS,
+output		  				SDRAM_WE
 );
 
 wire                       brd_clk_n;
@@ -305,7 +303,6 @@ endgenerate
 // -------------------------------------------------------------
 // Instantiate SDRAM Memory 
 // -------------------------------------------------------------
-/*
 SDRAM_WB_CTRL sdram0 (
         .WB_CLK_I               ( sys_clk         ),
         .WB_RST_I               ( sys_rst         ),
@@ -330,7 +327,6 @@ SDRAM_WB_CTRL sdram0 (
 		  .SDRAM_WE               ( SDRAM_WE    )
 
     );
-*/
 
 // -------------------------------------------------------------
 // Instantiate UART0

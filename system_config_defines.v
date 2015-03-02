@@ -58,8 +58,7 @@
 `ifdef XILINX_VIRTEX6_FPGA
     `define AMBER_CLK_DIVIDER 13
 `else 
-//    `define AMBER_CLK_DIVIDER 20
-    `define AMBER_CLK_DIVIDER 16
+    `define AMBER_CLK_DIVIDER 16//24
 `endif
 
 // Specify a device, if none defined then the
