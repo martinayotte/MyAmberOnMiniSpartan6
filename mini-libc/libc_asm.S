@@ -70,7 +70,6 @@ _outbyte:
         @ Check the tx_full flag
 1:      ldr     r2, [r3]
         and     r2, r2, #0x20
-//        and     r2, r2, #0x00
         cmp     r2, #0
         streqb  r0, [r1]
         moveqs  pc, lr          @ return

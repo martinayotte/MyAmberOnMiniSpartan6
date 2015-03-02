@@ -38,11 +38,9 @@
 #                                                               //
 # ----------------------------------------------------------------
 
-#LIBC_OBJ         = ./mini-libc/snprintf.o ./mini-libc/printf.o ./mini-libc/libc_asm.o ./mini-libc/memcpy.o
-LIBC_OBJ         = ./mini-libc/printf.o ./mini-libc/libc_asm.o ./mini-libc/memcpy.o
-DEP             += ./include/amber_registers.h ./mini-libc/stdio.h
-TOOLSPATH        = ./tools
-#AMBER_CROSSTOOL ?= amber-crosstool-not-defined
+LIBC_OBJ         = ../mini-libc/printf.o ../mini-libc/libc_asm.o ../mini-libc/memcpy.o
+DEP             += ../include/amber_registers.h ../mini-libc/stdio.h
+TOOLSPATH        = ../tools
 AMBER_CROSSTOOL = arm-none-eabi
 
   AS    = $(AMBER_CROSSTOOL)-as
@@ -53,8 +51,8 @@ AMBER_CROSSTOOL = arm-none-eabi
   DS    = $(AMBER_CROSSTOOL)-objdump
   OC    = $(AMBER_CROSSTOOL)-objcopy
  ELF    = $(TOOLSPATH)/amber-elfsplitter
- BMF32  = ./tools/amber-memparams32.sh
- BMF128 = ./tools/amber-memparams128.sh
+ BMF32  = ../tools/amber-memparams32.sh
+ BMF128 = ../tools/amber-memparams128.sh
 
  MMP32  = $(addsuffix _memparams32.v, $(basename $(TGT)))
  MMP128 = $(addsuffix _memparams128.v, $(basename $(TGT)))
@@ -88,8 +86,8 @@ endif
 
  MAP = $(addsuffix .map, $(basename $(TGT))) 
  
- ASFLAGS = -Wa,-adhlns=$(<:.S=.lst),-g$(DEBUG) -I./include 
-  CFLAGS = -c $(OPTIMIZE) -march=armv2a -mno-thumb-interwork -ffreestanding -Wa,-adhlns=$(subst $(suffix $<),.lst,$<) -I./include
+ ASFLAGS = -I../include 
+  CFLAGS = -c $(OPTIMIZE) -march=armv2a -mno-thumb-interwork -ffreestanding -I../include
  DSFLAGS = -C -S -EL
  LDFLAGS = -Bstatic -Map $(MAP) --strip-debug --fix-v4bx
 
@@ -121,7 +119,7 @@ endif
 $(OBJ): $(DEP)
 
 mini-libc:
-	$(MAKE) -s -C ./mini-libc MIN_SIZE=1
+	$(MAKE) -s -C ../mini-libc MIN_SIZE=1
 
 $(ELF):
 	$(MAKE) -s -C $(TOOLSPATH)

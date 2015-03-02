@@ -1,13 +1,13 @@
 # ----------------------------------------------------------------
 #                                                               //
-#   Makefile for the mini-libc                                  //
+#   Makefile for the hello-world application.                   //
 #                                                               //
 #   This file is part of the Amber project                      //
 #   http://www.opencores.org/project,amber                      //
 #                                                               //
 #   Description                                                 //
-#   Cross-compiles the mini-libc c and assembly files           //
-#   into objects for inclusion with other applications.         //
+#   Simple makefile that defines the sources and target.        //
+#   Uses the common.mk common makefile script.                  //
 #                                                               //
 #   Author(s):                                                  //
 #       - Conor Santifort, csantifort.amber@gmail.com           //
@@ -38,26 +38,13 @@
 #  from http://www.opencores.org/lgpl.shtml                     //
 #                                                               //
 # ----------------------------------------------------------------
-# Compile mini-libc
+# Assembly source files
 
-#AMBER_CROSSTOOL ?= amber-crosstool-not-defined
-AMBER_CROSSTOOL = arm-none-eabi
+SRC = hello-world.c start.S
+TGT = hello-world.elf
+LDS = sections.lds
 
- SRC = snprintf.c printf.c memcpy.c libc_asm.S
-TGT  = printf
- 
- OBJ = $(addsuffix .o,   $(basename $(SRC)))
-  CC = $(AMBER_CROSSTOOL)-gcc
+USE_MINI_LIBC = 1
+CREATE_FLT_OUTPUT = 1
 
-# optimize for size
-OPTIMIZE = -Os
- 
-CFLAGS  = -c -march=armv2a -mno-thumb-interwork $(OPTIMIZE) -ffreestanding -Wa,-adhlns=$(subst $(suffix $<),.lst,$<) -I../include
-ASFLAGS = -Wa,-adhlns=$(<:.S=.lst),-g$(DEBUG) -I../include
-
-$(TGT): $(OBJ)
-	
-
-clean:
-	@rm -rfv *.o *.elf *.dis *.map *.mem $(MMP)
-
+include ../include/common.mk

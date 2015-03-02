@@ -1,13 +1,13 @@
 # ----------------------------------------------------------------
 #                                                               //
-#   Makefile for the boot-loader application.                   //
+#   Makefile for the mini-libc                                  //
 #                                                               //
 #   This file is part of the Amber project                      //
 #   http://www.opencores.org/project,amber                      //
 #                                                               //
 #   Description                                                 //
-#   Simple makefile that defines the sources and target.        //
-#   Uses the common.mk common makefile script.                  //
+#   Cross-compiles the mini-libc c and assembly files           //
+#   into objects for inclusion with other applications.         //
 #                                                               //
 #   Author(s):                                                  //
 #       - Conor Santifort, csantifort.amber@gmail.com           //
@@ -38,20 +38,25 @@
 #  from http://www.opencores.org/lgpl.shtml                     //
 #                                                               //
 # ----------------------------------------------------------------
-# Assembly source files
+# Compile mini-libc
 
-SRC = boot-loader-serial.c start.S crc16.c xmodem.c elfsplitter.c
-DEP = boot-loader.h fpga-version.h
-TGT = boot-loader-serial.elf
-LDS = sections.lds
+AMBER_CROSSTOOL = arm-none-eabi
 
-USE_MINI_LIBC = 1
+ SRC = printf.c memcpy.c libc_asm.S
+TGT  = printf
+ 
+ OBJ = $(addsuffix .o,   $(basename $(SRC)))
+  CC = $(AMBER_CROSSTOOL)-gcc
 
-# Needs to fit into the boot memory on the FPGA - 8kBytes
-# so size is important
-MIN_SIZE      = 1
+# optimize for size
+OPTIMIZE = -Os
+ 
+CFLAGS  = -c -march=armv2a -mno-thumb-interwork $(OPTIMIZE) -ffreestanding -I../include
+ASFLAGS = -I../include
 
-all : debug
-	../tools/check_mem_size.sh $(MEM) "@000020"
-        
-include ../include/common.mk
+$(TGT): $(OBJ)
+	
+
+clean:
+	@rm -rfv *.o *.elf *.dis *.map *.mem $(MMP)
+

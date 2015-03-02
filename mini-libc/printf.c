@@ -39,7 +39,6 @@
 ----------------------------------------------------------------*/
 
 #include "stdio.h"
-#include "stdarg.h"
 
 /* Defines */
 #define PAD_RIGHT 1
@@ -51,24 +50,26 @@
 
 inline void outbyte(char** dst, char c)
 {
-// Note the standard number for stdout in Unix is 1 but
-//   I use 0 here, because I don't support stdin or stderr
+/* Note the standard number for stdout in Unix is 1 but
+   I use 0 here, because I don't support stdin or stderr
+*/
 if (*dst)
     *(*dst)++ = c;
 else
     _outbyte(c);
 }
 
-/*
+
 int sprintf(char* dst, const char *fmt, ...)
 {
     register unsigned long *varg = (unsigned long *)(&fmt);
     *varg++;
-
-    // Need to pass a pointer to a pointer to the location to
-    //   write the character, to that the pointer to the location
-    //   can be incremented by the final outpute function
-
+   
+    /* Need to pass a pointer to a pointer to the location to
+       write the character, to that the pointer to the location
+       can be incremented by the final outpute function
+    */   
+   
     return print(&dst, fmt, varg);
 }
 
@@ -77,10 +78,10 @@ int printf(const char *fmt, ...)
     register unsigned long *varg = (unsigned long *)(&fmt);
     *varg++;
     char *dst = 0;
-
+   
     return print((char**)&dst, fmt, varg);
 }
-*/
+
 /*  printf supports the following types of syntax ---
     char *ptr = "Hello world!";
     char *np = 0;
@@ -104,13 +105,12 @@ int printf(const char *fmt, ...)
 
 */
 
-/*
 int print(char** dst, const char *format, unsigned long *varg)
 {
     register int width, pad;
     register int pc = 0;
     char scr[2];
-
+     
     for (; *format != 0; ++format) {
        if (*format == '%') {
           ++format;
@@ -151,7 +151,7 @@ int print(char** dst, const char *format, unsigned long *varg)
              continue;
           }
           if( *format == 'c' ) {
-             // char are converted to int then pushed on the stack 
+             /* char are converted to int then pushed on the stack */
              scr[0] = *varg++;
              scr[1] = '\0';
              pc += prints (dst, scr, width, pad);
@@ -170,7 +170,39 @@ int print(char** dst, const char *format, unsigned long *varg)
 }
 
 
-// Printf an integer
+/* Print a string - no formatting characters will be interpreted here */
+int prints(char** dst, const char *string, int width, int pad)
+{
+    register int pc = 0, padchar = ' ';
+
+    if (width > 0) {                          
+       register int len = 0;                  
+       register const char *ptr;              
+       for (ptr = string; *ptr; ++ptr) ++len; 
+       if (len >= width) width = 0;           
+       else width -= len;                     
+       if (pad & PAD_ZERO) padchar = '0';     
+    }                                         
+    if (!(pad & PAD_RIGHT)) {                 
+       for ( ; width > 0; --width) {          
+          outbyte(dst, padchar);              
+          ++pc;                               
+       }                                      
+    }                                         
+    for ( ; *string ; ++string) {             
+       outbyte(dst, *string);                 
+       ++pc;                                  
+    }                                         
+    for ( ; width > 0; --width) {             
+       outbyte(dst, padchar);                 
+       ++pc;                                  
+    }                                         
+
+    return pc;                                
+}
+
+
+/* Printf an integer */
 int printi(char** dst, int i, int b, int sg, int width, int pad, int letbase)
 {
     char print_buf[PRINT_BUF_LEN];
@@ -193,22 +225,22 @@ int printi(char** dst, int i, int b, int sg, int width, int pad, int letbase)
     *s = '\0';
 
     while (u) {
-       if ( b == 16 )    t = u & 0xf;                  // hex modulous
-       else              t = u - ( _div (u, b) * b );  // Modulous
-
+       if ( b == 16 )    t = u & 0xf;                  /* hex modulous */
+       else              t = u - ( _div (u, b) * b );  /* Modulous */
+       
        if( t >= 10 )
           t += letbase - '0' - 10;
        *--s = t + '0';
-
-    //   u /= b;
-       if ( b == 16)  u = u >> 4;    // divide by 16
+       
+    /*   u /= b;  */
+       if ( b == 16)  u = u >> 4;    /* divide by 16 */
        else           u = _div(u, b);
     }
 
     if (neg) {
        if( width && (pad & PAD_ZERO) ) {
-          // _outbyte('-');
-          outbyte(dst,'-');
+          /* _outbyte('-'); */
+          outbyte(dst,'-'); 
           ++pc;
           --width;
        }
@@ -219,155 +251,4 @@ int printi(char** dst, int i, int b, int sg, int width, int pad, int letbase)
 
     return pc + prints (dst, s, width, pad);
 }
-*/
 
-// Print a string - no formatting characters will be interpreted here
-int prints(char** dst, const char *string, int width, int pad)
-{
-    register int pc = 0, padchar = ' ';
-
-    if (width > 0) {
-       register int len = 0;
-       register const char *ptr;
-       for (ptr = string; *ptr; ++ptr) ++len;
-       if (len >= width) 
-               width = 0;
-       else 
-               width -= len;
-       if (pad & PAD_ZERO) padchar = '0';
-    }
-    if (!(pad & PAD_RIGHT)) {
-       for ( ; width > 0; --width) {
-          _outbyte(padchar);
-          ++pc;
-       }
-    }
-    for ( ; *string ; ++string) {
-       if (*string == '\n') 
-               _outbyte('\r');
-       _outbyte(*string);
-       ++pc;
-    }
-    for ( ; width > 0; --width) {
-       _outbyte(padchar);
-       ++pc;
-    }
-
-    return pc;
-}
-
-
-int printf(const char *format, ...)
-{
-    register int width, pad;
-    register int pc = 0;
-    int i;
-    unsigned u;
-    int t;
-    char *s;
-    char buf[PRINT_BUF_LEN];
-    char *dst = 0;
-
-    va_list argp;
-    va_start(argp, format);
-
-    for (; *format != 0; ++format) {
-       if (*format == '%') {
-          ++format;
-          width = pad = 0;
-          if (*format == '\0') break;
-          if (*format == '%') goto out;
-          if (*format == '-') {
-             ++format;
-             pad = PAD_RIGHT;
-          }
-          while (*format == '0') {
-             ++format;
-             pad |= PAD_ZERO;
-          }
-          for ( ; *format >= '0' && *format <= '9'; ++format) {
-             width *= 10;
-             width += *format - '0';
-          }
-          if( *format == 's' ) {
-		s = va_arg(argp, char *);
-		pc += prints(0, s?s:"(null)", width, pad);
-             continue;
-          }
-          if( *format == 'd' ) {
-		i = va_arg(argp, int);
-		if (i < 0) {
-			// XXX won't handle INT_MIN
-			i = -i;
-			_outbyte('-');
-		}
-                s = buf + PRINT_BUF_LEN - 1;
-                *s = '\0';
-                while (i) {
-                        t = i - ( _div (i, 10) * 10 );
-                        *--s = t + '0';
-                        i = _div(i, 10);
-                 }
-        	pc += prints(0, s, width, pad);
-             continue;
-          }
-          if( *format == 'x' ) {
-		u = va_arg(argp, unsigned int);
-                s = buf + PRINT_BUF_LEN - 1;
-                *s = '\0';
-                while (u) {
-                                t = u & 0xf;
-                                if (t >= 10)
-                                        t += 'a' - '0' - 10;
-                                *--s = t + '0';
-                                u = u >> 4;
-                }
-        	pc += prints(0, s, width, pad);
-             continue;
-          }
-          if( *format == 'X' ) {
-		u = va_arg(argp, unsigned int);
-                s = buf + PRINT_BUF_LEN - 1;
-                *s = '\0';
-                while (u) {
-                                t = u & 0xf;
-                                if (t >= 10)
-                                        t += 'A' - '0' - 10;
-                                *--s = t + '0';
-                                u = u >> 4;
-                }
-        	pc += prints(0, s, width, pad);
-             continue;
-          }
-          if( *format == 'u' ) {
-		u = va_arg(argp, unsigned int);
-                s = buf + PRINT_BUF_LEN - 1;
-                *s = '\0';
-                while (u) {
-                                t = u - ( _div (u, 10) * 10 );
-                                *--s = t + '0';
-                                u = _div(u, 10);
-                }
-		pc += prints(0, s, width, pad);
-             continue;
-          }
-          if( *format == 'c' ) {
-             // char are converted to int then pushed on the stack 
-             i = va_arg(argp, int);
-             // *not* va_arg(argp, char);
-             buf[0] = i;
-             buf[1] = '\0';
-             pc += prints (0, buf, width, pad);
-             continue;
-          }
-       }
-       else {
-       out:
-          if (*format=='\n') _outbyte('\r');
-          _outbyte (*format);
-          ++pc;
-       }
-    }
-
-    return pc;
-}
