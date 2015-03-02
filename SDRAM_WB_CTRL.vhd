@@ -143,7 +143,7 @@ begin
 	process(WB_CLK_I)
 	begin
 		if rising_edge(WB_CLK_I) then
-			WB_ACK_O <= sdr_data_out_valid;
+			WB_ACK_O <= sdr_data_out_valid or sdr_req_write;
 			WB_DATA_O <= sdr_data_out;
 		end if;
 	end process;

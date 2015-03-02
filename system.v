@@ -327,6 +327,8 @@ SDRAM_WB_CTRL sdram0 (
 		  .SDRAM_WE               ( SDRAM_WE    )
 
     );
+	 
+assign s_wb_err[2] = 1'd0;
 
 // -------------------------------------------------------------
 // Instantiate UART0
