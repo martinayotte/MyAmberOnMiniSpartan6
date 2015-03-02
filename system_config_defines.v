@@ -58,7 +58,8 @@
 `ifdef XILINX_VIRTEX6_FPGA
     `define AMBER_CLK_DIVIDER 13
 `else 
-    `define AMBER_CLK_DIVIDER 16//24
+//    `define AMBER_CLK_DIVIDER 16
+    `define AMBER_CLK_DIVIDER 24
 `endif
 
 // Specify a device, if none defined then the
@@ -132,7 +133,7 @@
 `endif
 `ifndef BOOT_MEM_PARAMS_FILE
 //    `define BOOT_MEM_PARAMS_FILE    "not-defined"
-    `define BOOT_MEM_PARAMS_FILE    "./boot-loader-serial/boot-loader-serial_memparams32.v"
+    `define BOOT_MEM_PARAMS_FILE    "boot-loader-serial_memparams32.v"
 `endif
 `ifndef AMBER_LOG_FILE
     `define AMBER_LOG_FILE          "tests.log"

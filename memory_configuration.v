@@ -41,7 +41,7 @@
 //////////////////////////////////////////////////////////////////
 
 // e.g. 24 for 32MBytes, 26 for 128MBytes
-localparam MAIN_MSB             = 26; 
+localparam MAIN_MSB             = 24; 
 
 // e.g. 13 for 4k words
 localparam BOOT_MSB             = 13;  
@@ -62,7 +62,7 @@ function in_loboot_mem;
     input [31:0] address;
 begin
 in_loboot_mem  = (address >= BOOT_BASE   && 
-                 address < (BOOT_BASE   + 2**(BOOT_MSB+1)-1));
+                 address < (BOOT_BASE+(1<<(BOOT_MSB+1))));
 end
 endfunction
 
@@ -87,7 +87,7 @@ function in_main_mem;
     input [31:0] address;
 begin
 in_main_mem  = (address >= MAIN_BASE   && 
-                address < (MAIN_BASE   + 2**(MAIN_MSB+1)-1)) &&
+                address < (MAIN_BASE+(1<<(MAIN_MSB+1)))) &&
                 !in_boot_mem ( address );
 end
 endfunction
