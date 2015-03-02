@@ -31,3 +31,5 @@ simulation/
 *.o
 #*.xml
 /webtalk_impact.xml
+.Xil/
+*.jou

@@ -1,6 +1,6 @@
 # Clocks
-NET "brd_clk" PERIOD = 20 ns | LOC = "K3"; # IO_L42P_GCLK25_TRDY2_M3UDM
-#NET "brd_clk" PERIOD = 31.25 ns | LOC = "J4"; # IO_L42N_GCLK24_M3LDM_3
+#NET "brd_clk" PERIOD = 20 ns | LOC = "K3"; # IO_L42P_GCLK25_TRDY2_M3UDM
+NET "brd_clk" PERIOD = 31.25 ns | LOC = "J4"; # IO_L42N_GCLK24_M3LDM_3
 # Reset
 NET "brd_rst" LOC="M11" | IOSTANDARD=LVTTL | PULLUP;
 # Start
